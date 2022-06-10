@@ -14,4 +14,7 @@ module.exports = {
       version: 'detect',
     },
   },
+  rules: {
+    'react/jsx-indent': [2, 2],
+  },
 }
