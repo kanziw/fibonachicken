@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "FibonaChicken",
+  "name": "남기지 않는다. 치킨. 피보나치킨!",
   "icons": [
     {
       "src": "favicon.ico",

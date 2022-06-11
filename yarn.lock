@@ -2568,6 +2568,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jest@npm:^28.1.1":
+  version: 28.1.1
+  resolution: "@types/jest@npm:28.1.1"
+  dependencies:
+    jest-matcher-utils: ^27.0.0
+    pretty-format: ^27.0.0
+  checksum: 0a8b045a7b660372decc807c390d3f99a2b12bb1659a1cd593afe04557f4b7c235b0576a5e35b1577710d20e42759d3d8755eb8bed6edc8733f47007e75a5509
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -5858,6 +5868,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fibonachicken@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "fibonachicken@workspace:."
+  dependencies:
+    "@types/jest": ^28.1.1
+    "@types/node": ^16.11.39
+    "@types/react": ^18.0.12
+    "@types/react-dom": ^18.0.5
+    "@typescript-eslint/eslint-plugin": ^5.27.1
+    "@typescript-eslint/parser": ^5.27.1
+    eslint: ^8.17.0
+    eslint-config-kanziw: ^0.1.1
+    eslint-config-react-app: ^7.0.1
+    eslint-config-standard: ^17.0.0
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-n: ^15.2.2
+    eslint-plugin-promise: ^6.0.0
+    eslint-plugin-react: ^7.30.0
+    eslint-plugin-simple-import-sort: ^7.0.0
+    react: ^18.1.0
+    react-dom: ^18.1.0
+    react-scripts: 5.0.1
+    typescript: ^4.7.3
+    web-vitals: ^2.1.4
+  languageName: unknown
+  linkType: soft
+
 "file-entry-cache@npm:^6.0.1":
   version: 6.0.1
   resolution: "file-entry-cache@npm:6.0.1"
@@ -7354,7 +7391,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-matcher-utils@npm:^27.5.1":
+"jest-matcher-utils@npm:^27.0.0, jest-matcher-utils@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-matcher-utils@npm:27.5.1"
   dependencies:
@@ -9872,7 +9909,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-format@npm:^27.5.1":
+"pretty-format@npm:^27.0.0, pretty-format@npm:^27.5.1":
   version: 27.5.1
   resolution: "pretty-format@npm:27.5.1"
   dependencies:
@@ -10053,31 +10090,6 @@ __metadata:
   checksum: 1bb031080af15397d6eb9c69a0c2e93799991f7197a086e4409ba719398f1256b542a3d6c9a34673d516c684eef3e8226c99b335982593851f58f65f6e43571b
   languageName: node
   linkType: hard
-
-"react-boilerplate@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-boilerplate@workspace:."
-  dependencies:
-    "@types/node": ^16.11.39
-    "@types/react": ^18.0.12
-    "@types/react-dom": ^18.0.5
-    "@typescript-eslint/eslint-plugin": ^5.27.1
-    "@typescript-eslint/parser": ^5.27.1
-    eslint: ^8.17.0
-    eslint-config-kanziw: ^0.1.1
-    eslint-config-standard: ^17.0.0
-    eslint-plugin-import: ^2.26.0
-    eslint-plugin-n: ^15.2.2
-    eslint-plugin-promise: ^6.0.0
-    eslint-plugin-react: ^7.30.0
-    eslint-plugin-simple-import-sort: ^7.0.0
-    react: ^18.1.0
-    react-dom: ^18.1.0
-    react-scripts: 5.0.1
-    typescript: ^4.7.3
-    web-vitals: ^2.1.4
-  languageName: unknown
-  linkType: soft
 
 "react-dev-utils@npm:^12.0.1":
   version: 12.0.1
