@@ -93,7 +93,7 @@ export const useFibonaChicken = (initialPeople = 1) => {
 }
 
 export const isValidFibonaChickenPeople = (people: number): boolean => (
-  people > 0 && !Number.isNaN(people)
+  people > 0 && people < Number.MAX_SAFE_INTEGER && Number.isFinite(people)
 )
 
 function fibonaChicken(totalPeople: number) {
