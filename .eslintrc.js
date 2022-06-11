@@ -2,6 +2,8 @@ module.exports = {
   extends: [
     'kanziw',
     'plugin:react/recommended',
+    'react-app',
+    'react-app/jest',
   ],
   parserOptions: {
     ecmaFeatures: {
