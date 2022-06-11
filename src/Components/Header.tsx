@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode } from 'react'
 
-import GitHub from '../Assets/github.svg'
+import GitHub from '../assets/github.svg'
 
 const styles: Record<string, CSSProperties> = {
   header: {

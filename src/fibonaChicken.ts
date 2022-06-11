@@ -92,8 +92,12 @@ export const useFibonaChicken = (initialPeople = 1) => {
   }
 }
 
+export const isValidFibonaChickenPeople = (people: number): boolean => (
+  people > 0 && !Number.isNaN(people)
+)
+
 function fibonaChicken(totalPeople: number) {
-  if (totalPeople < 1 || Number.isNaN(totalPeople)) {
+  if (!isValidFibonaChickenPeople(totalPeople)) {
     return 0
   }
   let totalChicken = 0

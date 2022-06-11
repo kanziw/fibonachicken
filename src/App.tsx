@@ -1,15 +1,22 @@
 import { ChangeEventHandler, CSSProperties, useState } from 'react'
 
-import { Header, HorizontalDevider } from './Components'
-import { useFibonaChicken } from './fibonaChicken'
+import { Header, HorizontalDevider } from './components'
+import { isValidFibonaChickenPeople, useFibonaChicken } from './fibonaChicken'
 
 const styles: Record<string, CSSProperties> = {
   main: {
     margin: '0.5rem auto',
     width: '80%',
   },
+  section: {
+    textAlign: 'center',
+  },
   input: {
-    maxWidth: '18%',
+    maxWidth: '20%',
+  },
+  arrow: {
+    marginLeft: '0.5rem',
+    cursor: 'pointer',
   },
 }
 
@@ -17,17 +24,28 @@ const App = () => {
   const queryParams = new URLSearchParams(window.location.search)
   const initialPeople = Number(queryParams.get('people')) || 1
 
-  const [errMessage, setErrMessage] = useState<string | null>(null)
   const { people, chicken, setPeople } = useFibonaChicken(initialPeople)
+  const [inputValue, setInputValue] = useState(initialPeople.toString())
+  const [errMessage, setErrMessage] = useState<string | null>(null)
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setInputValue(e.target.value)
+
     const newPeople = Number(e.target.value)
-    if (newPeople < 1 || Number.isNaN(newPeople)) {
+    if (!isValidFibonaChickenPeople(newPeople)) {
       setErrMessage('..네??')
       return
     }
     setErrMessage(null)
     setPeople(newPeople)
+  }
+  const increase = (value: number) => () => {
+    const newPeople = people + value
+    if (isValidFibonaChickenPeople(newPeople)) {
+      setErrMessage(null)
+      setInputValue(newPeople.toString())
+      setPeople(newPeople)
+    }
   }
 
   return (
@@ -35,8 +53,19 @@ const App = () => {
       <Header>피보나치킨</Header>
       <HorizontalDevider />
       <main style={styles.main}>
-        <input style={styles.input} type="number" defaultValue={people} onChange={onChange} />인 몇닭?
-        <p>{errMessage || `🐔 ${people}인 ${chicken}닭 🐔`}</p>
+        <section style={styles.section}>
+          <input
+            style={styles.input}
+            inputMode="numeric"
+            type="number"
+            value={inputValue}
+            onChange={onChange}
+          />인 몇닭?
+          {/* <span style={styles.arrow}>&#42779;</span><span style={styles.arrow}>&#42780;</span> */}
+          <span style={styles.arrow} onClick={increase(1)}>&#9650;</span>
+          <span style={styles.arrow} onClick={increase(-1)}>&#9660;</span>
+          <p>{errMessage || `🐔 ${people}인 ${chicken}닭 🐔`}</p>
+        </section>
         <br />
         <details>
           <summary>ㅋ</summary>
