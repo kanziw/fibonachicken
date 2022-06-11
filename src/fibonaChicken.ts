@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const fibonacciSeries = [
   0,
   1,
@@ -80,7 +82,20 @@ const fibonacciSeries = [
   8944394323791464,
 ]
 
-export function fibonaChicken(totalPeople: number) {
+export const useFibonaChicken = () => {
+  const [people, setPeople] = useState<number>(1)
+
+  return {
+    people,
+    chicken: fibonaChicken(people),
+    setPeople,
+  }
+}
+
+function fibonaChicken(totalPeople: number) {
+  if (totalPeople < 1 || Number.isNaN(totalPeople)) {
+    return 0
+  }
   let totalChicken = 0
 
   do {
