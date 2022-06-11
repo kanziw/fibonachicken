@@ -1,7 +1,6 @@
-import './App.css'
-
 import { ChangeEventHandler, useState } from 'react'
 
+import { Header } from './Components/Header'
 import { useFibonaChicken } from './fibonaChicken'
 
 const App = () => {
@@ -23,7 +22,7 @@ const App = () => {
 
   return (
     <>
-      <h1>피보나치킨</h1>
+      <Header>피보나치킨</Header>
       <input type="number" defaultValue={people} onChange={onChange} />
       <p>{errMessage || `${people}명이면 ${chicken}닭이죠!`}</p>
       <br />
