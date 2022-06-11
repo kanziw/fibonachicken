@@ -53,6 +53,7 @@ const App = () => {
     setErrMessage(null)
     setPeople(newPeople)
   }
+
   const increase = (value: number) => () => {
     const newPeople = people + value
     if (isValidFibonaChickenPeople(newPeople)) {
@@ -62,9 +63,15 @@ const App = () => {
     }
   }
 
+  const reset = () => {
+    setErrMessage(null)
+    setInputValue('1')
+    setPeople(1)
+  }
+
   return (
     <>
-      <Header>피보나치킨 계산기</Header>
+      <Header><span onClick={reset}>피보나치킨 계산기</span></Header>
       <HorizontalDevider />
       <main style={styles.main}>
         <section style={styles.calculator}>
