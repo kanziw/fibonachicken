@@ -82,8 +82,8 @@ const fibonacciSeries = [
   8944394323791464,
 ]
 
-export const useFibonaChicken = () => {
-  const [people, setPeople] = useState<number>(1)
+export const useFibonaChicken = (initialPeople = 1) => {
+  const [people, setPeople] = useState<number>(initialPeople)
 
   return {
     people,
