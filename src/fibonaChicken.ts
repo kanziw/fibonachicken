@@ -1,4 +1,4 @@
-const FibonacciSeries = [
+const fibonacciSeries = [
   0,
   1,
   1,
@@ -80,8 +80,29 @@ const FibonacciSeries = [
   8944394323791464,
 ]
 
-describe('피보나치', () => {
-  it('ss', () => {
-    console.log(FibonacciSeries[2])
-  })
-})
+export function fibonaChicken(totalPeople: number) {
+  let totalChicken = 0
+
+  do {
+    if (isFibonacciNumber(totalPeople)) {
+      return totalChicken + findNearFibonaChicken(totalPeople + 1).chicken
+    }
+
+    const { people, chicken } = findNearFibonaChicken(totalPeople)
+    totalPeople -= people
+    totalChicken += chicken
+  } while (true)
+}
+
+function findNearFibonaChicken(people: number) {
+  if (people === 1 || people === 2) {
+    return { people, chicken: 1 }
+  }
+
+  const idx = fibonacciSeries.findIndex(x => x >= people) - 1
+  return { people: fibonacciSeries[idx], chicken: fibonacciSeries[idx - 1] }
+}
+
+function isFibonacciNumber(n: number) {
+  return fibonacciSeries.includes(n)
+}
