@@ -6,6 +6,5 @@
   "include": [
     "src",
     ".eslintrc.js",
-    "craco.config.ts",
   ]
 }
