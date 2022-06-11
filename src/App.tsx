@@ -5,20 +5,24 @@ import { isValidFibonaChickenPeople, useFibonaChicken } from './fibonaChicken'
 
 const styles: Record<string, CSSProperties> = {
   main: {
-    margin: '0.5rem auto',
+    margin: '1.5rem auto',
     width: '80%',
+    lineHeight: '5rem',
   },
   section: {
     textAlign: 'center',
-    fontSize: '1.5rem',
+    fontSize: '1.8rem',
   },
   input: {
-    maxWidth: '20%',
+    maxWidth: '50%',
     fontSize: 'inherit',
   },
   arrow: {
     marginLeft: '0.5rem',
     cursor: 'pointer',
+  },
+  chickens: {
+    lineHeight: '2rem',
   },
 }
 
@@ -71,7 +75,9 @@ const App = () => {
           {errMessage ? '🤔' : chicken}닭! 🐔
           <span style={styles.arrow} onClick={increase(1)}>&#9650;</span>
           <span style={styles.arrow} onClick={increase(-1)}>&#9660;</span>
-          <p>{errMessage || (chicken < 10000 ? '🐔'.repeat(chicken) : '이정도면 🐔이 모자라지 않을까요...?')}</p>
+          <p style={styles.chickens}>
+            {errMessage || (chicken < 10000 ? '🐔'.repeat(chicken) : '이정도면 🐔이 모자라지 않을까요...?')}
+          </p>
         </section>
         <br />
         <details>

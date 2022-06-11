@@ -7,7 +7,7 @@ const styles: Record<string, CSSProperties> = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: '0 2rem',
+    margin: '1.5rem 2rem',
   },
   h1: {
     fontSize: '2rem',
