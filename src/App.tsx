@@ -1,7 +1,7 @@
-import { ChangeEventHandler, CSSProperties, useState } from 'react'
+import { CSSProperties } from 'react'
 
 import { Header, HorizontalDevider } from './components'
-import { isValidFibonaChickenPeople, useFibonaChicken } from './fibonaChicken'
+import { useFibonaChicken } from './fibonaChicken'
 
 const styles: Record<string, CSSProperties> = {
   main: {
@@ -33,41 +33,7 @@ const styles: Record<string, CSSProperties> = {
 const App = () => {
   const queryParams = new URLSearchParams(window.location.search)
   const initialPeople = Number(queryParams.get('people')) || 1
-
-  const { people, chicken, setPeople } = useFibonaChicken(initialPeople)
-  const [inputValue, setInputValue] = useState(initialPeople.toString())
-  const [errMessage, setErrMessage] = useState<string | null>(null)
-
-  const onChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
-    if (value.length > 12) {
-      setErrMessage('자네, 당근마켓에 지원해보겠나?ㅋ')
-      return
-    }
-    setInputValue(value)
-
-    const newPeople = Number(value)
-    if (!isValidFibonaChickenPeople(newPeople)) {
-      setErrMessage('..네??')
-      return
-    }
-    setErrMessage(null)
-    setPeople(newPeople)
-  }
-
-  const increase = (value: number) => () => {
-    const newPeople = people + value
-    if (isValidFibonaChickenPeople(newPeople)) {
-      setErrMessage(null)
-      setInputValue(newPeople.toString())
-      setPeople(newPeople)
-    }
-  }
-
-  const reset = () => {
-    setErrMessage(null)
-    setInputValue('1')
-    setPeople(1)
-  }
+  const { chicken, inputValue, errMessage, inputOnChange, increase, decrease, reset } = useFibonaChicken(initialPeople)
 
   return (
     <>
@@ -80,12 +46,12 @@ const App = () => {
             inputMode="numeric"
             type="number"
             value={inputValue}
-            onChange={onChange}
+            onChange={inputOnChange}
           />명이면..
           <br />
           {errMessage ? '🤔' : chicken}닭! 🐔
-          <span style={styles.arrow} onClick={increase(1)}>&#9650;</span>
-          <span style={styles.arrow} onClick={increase(-1)}>&#9660;</span>
+          <span style={styles.arrow} onClick={increase}>&#9650;</span>
+          <span style={styles.arrow} onClick={decrease}>&#9660;</span>
         </section>
         <section style={styles.chickens}>
           <p>{errMessage || (chicken < 10000 ? '🐔'.repeat(chicken) : '이정도면 🐔이 모자라지 않을까요...?')}</p>

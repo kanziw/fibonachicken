@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEventHandler, useState } from 'react'
 
 const fibonacciSeries = [
   0,
@@ -84,15 +84,54 @@ const fibonacciSeries = [
 
 export const useFibonaChicken = (initialPeople = 1) => {
   const [people, setPeople] = useState<number>(initialPeople)
+  const [inputValue, setInputValue] = useState(initialPeople.toString())
+  const [errMessage, setErrMessage] = useState<string | null>(null)
+
+  const inputOnChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
+    if (value.length > 12) {
+      setErrMessage('자네, 당근마켓에 지원해보겠나?ㅋ')
+      return
+    }
+    setInputValue(value)
+
+    const newPeople = Number(value)
+    if (!isValidFibonaChickenPeople(newPeople)) {
+      setErrMessage('..네??')
+      return
+    }
+    setErrMessage(null)
+    setPeople(newPeople)
+  }
+
+  const updator = (value: number) => () => {
+    const newPeople = people + value
+    if (isValidFibonaChickenPeople(newPeople)) {
+      setErrMessage(null)
+      setInputValue(newPeople.toString())
+      setPeople(newPeople)
+    }
+  }
+
+  const reset = () => {
+    setErrMessage(null)
+    setInputValue('1')
+    setPeople(1)
+  }
 
   return {
-    people,
     chicken: fibonaChicken(people),
-    setPeople,
+    errMessage,
+
+    inputValue,
+    inputOnChange,
+
+    increase: updator(1),
+    decrease: updator(-1),
+    reset,
   }
 }
 
-export const isValidFibonaChickenPeople = (people: number): boolean => (
+const isValidFibonaChickenPeople = (people: number): boolean => (
   people > 0 && people < Number.MAX_SAFE_INTEGER && Number.isFinite(people)
 )
 
