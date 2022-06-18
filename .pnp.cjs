@@ -51,6 +51,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-promise", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:6.0.0"],\
             ["eslint-plugin-react", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:7.30.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:7.0.0"],\
+            ["next-themes", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:0.2.0"],\
             ["react", "npm:18.1.0"],\
             ["react-dom", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:18.1.0"],\
             ["react-scripts", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:5.0.1"],\
@@ -8859,6 +8860,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-promise", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:6.0.0"],\
             ["eslint-plugin-react", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:7.30.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:7.0.0"],\
+            ["next-themes", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:0.2.0"],\
             ["react", "npm:18.1.0"],\
             ["react-dom", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:18.1.0"],\
             ["react-scripts", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:5.0.1"],\
@@ -11850,6 +11852,36 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/neo-async-npm-2.6.2-75d6902586-deac9f8d00.zip/node_modules/neo-async/",\
           "packageDependencies": [\
             ["neo-async", "npm:2.6.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["next-themes", [\
+        ["npm:0.2.0", {\
+          "packageLocation": "./.yarn/cache/next-themes-npm-0.2.0-37d8b4073b-cee02db16b.zip/node_modules/next-themes/",\
+          "packageDependencies": [\
+            ["next-themes", "npm:0.2.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:0.2.0", {\
+          "packageLocation": "./.yarn/__virtual__/next-themes-virtual-b6b2afcafc/0/cache/next-themes-npm-0.2.0-37d8b4073b-cee02db16b.zip/node_modules/next-themes/",\
+          "packageDependencies": [\
+            ["next-themes", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:0.2.0"],\
+            ["@types/next", null],\
+            ["@types/react", "npm:18.0.12"],\
+            ["@types/react-dom", "npm:18.0.5"],\
+            ["next", null],\
+            ["react", "npm:18.1.0"],\
+            ["react-dom", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:18.1.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/next",\
+            "@types/react-dom",\
+            "@types/react",\
+            "next",\
+            "react-dom",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
