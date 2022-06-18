@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom/client'
 
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { darkTheme, lightTheme } from './styles/vars.css'
+import { darcularTheme, darkTheme, lightTheme } from './styles/vars.css'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -18,8 +18,9 @@ root.render(
       value={{
         light: lightTheme,
         dark: darkTheme,
+        darcular: darcularTheme,
       }}
-      defaultTheme={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'}
+      defaultTheme={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'darcular' : 'light'}
     >
       <App />
     </ThemeProvider>

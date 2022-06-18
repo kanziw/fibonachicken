@@ -1,3 +1,5 @@
+import './styles/app.css'
+
 import { CSSProperties } from 'react'
 
 import { Header, HorizontalDevider } from './components'

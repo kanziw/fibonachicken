@@ -1,8 +1,7 @@
-import { useTheme } from 'next-themes'
 import { CSSProperties, ReactNode } from 'react'
 
-import GitHub from '../assets/github.svg'
-import GitHubDark from '../assets/github_dark.svg'
+import { ReactComponent as GitHub } from '../assets/github.svg'
+import { vars } from '../styles/vars.css'
 
 const styles: Record<string, CSSProperties> = {
   header: {
@@ -21,33 +20,27 @@ const styles: Record<string, CSSProperties> = {
     verticalAlign: 'middle',
   },
   ul: {
-    listStyle: 'none',
     display: 'flex',
   },
   a: {
     display: 'block',
     textDecoration: 'none',
-  },
-  liImg: {
-    height: '2.5rem',
+    width: '2.5rem',
+    fill: vars.colors.fill,
   },
 }
 
-export const Header = ({ children }: { children: ReactNode }) => {
-  const { theme } = useTheme()
-
-  return (
-    <header style={styles.header}>
-      <h1 style={styles.h1}>{children}</h1>
-      <nav style={styles.nav}>
-        <ul style={styles.ul}>
-          <li>
-            <a style={styles.a} href="https://github.com/kanziw/fibonachicken" target='_blank' rel="noreferrer">
-              <img style={styles.liImg} src={theme === 'dark' ? GitHubDark : GitHub} alt='GitHub' />
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  )
-}
+export const Header = ({ children }: { children: ReactNode }) => (
+  <header style={styles.header}>
+    <h1 style={styles.h1}>{children}</h1>
+    <nav style={styles.nav}>
+      <ul style={styles.ul}>
+        <li>
+          <a style={styles.a} href="https://github.com/kanziw/fibonachicken" target='_blank' rel="noreferrer">
+            <GitHub />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+)
