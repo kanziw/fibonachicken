@@ -26,10 +26,11 @@ export const darkTheme = createTheme(colors, {
   fill: 'white',
 })
 
+// https://github.com/kevinvn1709/vscode-dracula-color-theme/blob/a50f875631175ff53edea1b342fb1dcbb82f928c/themes/dracula-color-theme.json
 export const darcularTheme = createTheme(colors, {
   background: '#2B2B2B',
-  text: '#A9B7C6',
-  fill: '#A9B7C6',
+  text: '#D4D4D4',
+  fill: '#D4D4D4',
 })
 
 export const vars = { ...global, colors }
