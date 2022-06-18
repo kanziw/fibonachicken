@@ -1,8 +1,9 @@
 import './styles/app.css'
 
-import { CSSProperties } from 'react'
+import { CSSProperties, useState } from 'react'
+import { useDoubleTap } from 'use-double-tap'
 
-import { Header, HorizontalDevider } from './components'
+import { Debugger, Header, HorizontalDevider } from './components'
 import { useFibonaChicken } from './fibonaChicken'
 
 const styles: Record<string, CSSProperties> = {
@@ -36,6 +37,11 @@ const App = () => {
   const queryParams = new URLSearchParams(window.location.search)
   const initialPeople = Number(queryParams.get('people')) || 1
   const { chicken, inputValue, errMessage, inputOnChange, increase, decrease, reset } = useFibonaChicken(initialPeople)
+  const [isDebuggerOn, setIsDebuggerOn] = useState(false)
+
+  const { onClick: toggleDebugger } = useDoubleTap(() => {
+    setIsDebuggerOn(!isDebuggerOn)
+  })
 
   return (
     <>
@@ -51,7 +57,7 @@ const App = () => {
             onChange={inputOnChange}
           />명이면..
           <br />
-          {errMessage ? '🤔' : chicken}닭! 🐔
+          {errMessage ? '🤔' : chicken}닭! <span onClick={toggleDebugger}>🐔</span>
           <span style={styles.arrow} onClick={increase}>&#9650;</span>
           <span style={styles.arrow} onClick={decrease}>&#9660;</span>
         </section>
@@ -72,6 +78,7 @@ const App = () => {
           </details>
         </section>
       </main>
+      <Debugger isDebuggerOn={isDebuggerOn} />
     </>
   )
 }

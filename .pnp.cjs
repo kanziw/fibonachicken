@@ -56,6 +56,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:18.1.0"],\
             ["react-scripts", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:5.0.1"],\
             ["typescript", "patch:typescript@npm%3A4.7.3#~builtin<compat/typescript>::version=4.7.3&hash=7ad353"],\
+            ["use-double-tap", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:1.3.3"],\
             ["web-vitals", "npm:2.1.4"]\
           ],\
           "linkType": "SOFT"\
@@ -8865,6 +8866,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:18.1.0"],\
             ["react-scripts", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:5.0.1"],\
             ["typescript", "patch:typescript@npm%3A4.7.3#~builtin<compat/typescript>::version=4.7.3&hash=7ad353"],\
+            ["use-double-tap", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:1.3.3"],\
             ["web-vitals", "npm:2.1.4"]\
           ],\
           "linkType": "SOFT"\
@@ -16514,6 +16516,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["uri-js", "npm:4.4.1"],\
             ["punycode", "npm:2.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["use-double-tap", [\
+        ["npm:1.3.3", {\
+          "packageLocation": "./.yarn/cache/use-double-tap-npm-1.3.3-f768ea5fd8-62f4c8719c.zip/node_modules/use-double-tap/",\
+          "packageDependencies": [\
+            ["use-double-tap", "npm:1.3.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:1.3.3", {\
+          "packageLocation": "./.yarn/__virtual__/use-double-tap-virtual-f13a4181d0/0/cache/use-double-tap-npm-1.3.3-f768ea5fd8-62f4c8719c.zip/node_modules/use-double-tap/",\
+          "packageDependencies": [\
+            ["use-double-tap", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:1.3.3"],\
+            ["@types/react", "npm:18.0.12"],\
+            ["react", "npm:18.1.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\

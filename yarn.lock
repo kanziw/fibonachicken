@@ -6096,6 +6096,7 @@ __metadata:
     react-dom: ^18.1.0
     react-scripts: 5.0.1
     typescript: ^4.7.3
+    use-double-tap: ^1.3.3
     web-vitals: ^2.1.4
   languageName: unknown
   linkType: soft
@@ -12125,6 +12126,15 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
+  languageName: node
+  linkType: hard
+
+"use-double-tap@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "use-double-tap@npm:1.3.3"
+  peerDependencies:
+    react: ^16.8.0 || 17.x
+  checksum: 62f4c8719c1078cb52dd9bcb941a54753d11685d62fe9fab3efb38078ebfcbe5729e104934ace98f050b9192a339da91d195388a7f273930a7a7b6a55d6d40ec
   languageName: node
   linkType: hard
 
