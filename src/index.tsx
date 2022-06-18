@@ -1,17 +1,29 @@
-import './index.css'
+import './global.css'
 
+import { ThemeProvider } from 'next-themes'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { darcularTheme, darkTheme, lightTheme } from './styles/vars.css'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 )
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider
+      attribute="class"
+      value={{
+        light: lightTheme,
+        dark: darkTheme,
+        darcular: darcularTheme,
+      }}
+      defaultTheme={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'darcular' : 'light'}
+    >
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
 )
 

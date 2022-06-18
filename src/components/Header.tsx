@@ -1,6 +1,7 @@
 import { CSSProperties, ReactNode } from 'react'
 
-import GitHub from '../assets/github.svg'
+import { ReactComponent as GitHub } from '../assets/github.svg'
+import { vars } from '../styles/vars.css'
 
 const styles: Record<string, CSSProperties> = {
   header: {
@@ -19,15 +20,13 @@ const styles: Record<string, CSSProperties> = {
     verticalAlign: 'middle',
   },
   ul: {
-    listStyle: 'none',
     display: 'flex',
   },
   a: {
     display: 'block',
     textDecoration: 'none',
-  },
-  liImg: {
-    height: '2.5rem',
+    width: '2.5rem',
+    fill: vars.colors.fill,
   },
 }
 
@@ -38,7 +37,7 @@ export const Header = ({ children }: { children: ReactNode }) => (
       <ul style={styles.ul}>
         <li>
           <a style={styles.a} href="https://github.com/kanziw/fibonachicken" target='_blank' rel="noreferrer">
-            <img style={styles.liImg} src={GitHub} alt='GitHub' />
+            <GitHub />
           </a>
         </li>
       </ul>
