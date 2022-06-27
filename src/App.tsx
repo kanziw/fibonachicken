@@ -35,6 +35,7 @@ const styles: Record<string, CSSProperties> = {
   reference: {
     margin: '0 0.5rem',
     fontSize: '0.8rem',
+    lineHeight: '1rem',
     fontStyle: 'italic',
   },
   twitter: {
