@@ -26,7 +26,7 @@ const styles: Record<string, CSSProperties> = {
     display: 'block',
     textDecoration: 'none',
     width: '2.5rem',
-    fill: vars.colors.fill,
+    fill: vars.colors.text,
   },
 }
 
