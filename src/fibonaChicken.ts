@@ -89,7 +89,7 @@ export const useFibonaChicken = (initialPeople = 1) => {
 
   const inputOnChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
     if (value.length > 12) {
-      setErrMessage('자네, 당근마켓에 지원해보겠나?ㅋ')
+      setErrMessage('자네, 당근마켓에 지원해보겠나?')
       return
     }
     setInputValue(value)
