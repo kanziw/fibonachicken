@@ -1,0 +1,21 @@
+on:
+  pull_request:
+
+name: Preview Deployment
+
+jobs:
+  preview-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: v16.16.0
+      - run: yarn build
+
+      - id: karrotmini-deployment
+        uses: karrotmini/deployment-site@v0.1.0-beta
+        with:
+          api-key: ${{ secrets.KARROTMINI_API_KEY }}
+          build-output-directory: ./build
+          preview-id: gh-pr-${{ github.event.pull_request.number }}
