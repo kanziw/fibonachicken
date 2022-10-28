@@ -1,4 +1,5 @@
 import './global.css'
+import '@karrotmini/sdk/index.css'
 
 import { ThemeProvider } from 'next-themes'
 import React from 'react'
