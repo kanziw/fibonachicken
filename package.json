@@ -2,6 +2,14 @@
   "name": "fibonachicken",
   "version": "0.1.0",
   "license": "MIT",
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "zip": "yarn build && cd build && zip -r Archive.zip ./",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "eslint src"
+  },
   "dependencies": {
     "@karrotmini/sdk": "^0.0.0",
     "@vanilla-extract/css": "^1.7.2",
@@ -31,13 +39,6 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.7.3"
-  },
-  "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject",
-    "lint": "eslint src"
   },
   "browserslist": {
     "production": [
