@@ -56,25 +56,6 @@ const App = () => {
     setIsDebuggerOn(!isDebuggerOn)
   })
 
-  const onLoginButtonClick = () => {
-    bridge.requestUserConsent({
-      scopes: ['account/profile'],
-    }).then(({ karrotUser: k }) => {
-      setKarrotUser(k)
-    })
-  }
-  const onAddFavoriteButtonClick = () => {
-    bridge.addToFavorites({
-      exampleContent: {
-        imageUrl: 'https://dnvefa72aowie.cloudfront.net/origin/article/202107/178fe27bdd1562126838a97919b26f831049bd6f43f97a8bfe8594ad6c86d892.png?q=95&s=1440x1440&t=inside',
-        title: '빵빵한 치킨',
-        typename: '치킨',
-      },
-    }).then(({ karrotUser: k }) => {
-      setKarrotUser(k)
-    })
-  }
-
   useEffect(() => {
     bridge.getKarrotUser().then(setKarrotUser)
   }, [])
@@ -85,10 +66,6 @@ const App = () => {
       <HorizontalDevider />
       <main style={styles.main}>
         <section style={styles.calculator}>
-          <button onClick={onLoginButtonClick}>LOG IN</button>
-          {karrotUser?.hasAddedToFavorites
-            ? <span>즐겨찾기 되어있어요</span>
-            : <button onClick={onAddFavoriteButtonClick}>즐겨찾기!!</button>}
           <input
             style={styles.input}
             inputMode="numeric"
