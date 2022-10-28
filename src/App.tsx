@@ -61,7 +61,6 @@ const App = () => {
       scopes: ['account/profile'],
     }).then(({ karrotUser: k }) => {
       setKarrotUser(k)
-      window.alert(JSON.stringify(k, null, 2))
     })
   }
   const onAddFavoriteButtonClick = () => {
@@ -73,7 +72,6 @@ const App = () => {
       },
     }).then(({ karrotUser: k }) => {
       setKarrotUser(k)
-      window.alert(JSON.stringify(k, null, 2))
     })
   }
 
@@ -99,6 +97,7 @@ const App = () => {
             onChange={inputOnChange}
           />명이면..
           <br />
+          {JSON.stringify(karrotUser, null, 2)}
           {errMessage ? '🤔' : chicken}닭! <span onClick={toggleDebugger}>🐔</span>
           <span style={styles.arrow} onClick={increase}>&#9650;</span>
           <span style={styles.arrow} onClick={decrease}>&#9660;</span>
