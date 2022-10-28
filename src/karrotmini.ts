@@ -1,5 +1,6 @@
 
 import { install } from '@karrotmini/sdk'
-const { createBridge } = install()
+const { createBridge, updateAppBar } = install()
 
 export const bridge = createBridge()
+export { updateAppBar }

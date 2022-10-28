@@ -51,6 +51,7 @@ const App = () => {
   const { chicken, inputValue, errMessage, inputOnChange, increase, decrease, reset } = useFibonaChicken(initialPeople)
   const [isDebuggerOn, setIsDebuggerOn] = useState(false)
   const [karrotUser, setKarrotUser] = useState<KarrotUser | null>(null)
+  console.log(' ~ file: App.tsx ~ line 54 ~ App ~ karrotUser', karrotUser)
 
   const { onClick: toggleDebugger } = useDoubleTap(() => {
     setIsDebuggerOn(!isDebuggerOn)
@@ -74,7 +75,6 @@ const App = () => {
             onChange={inputOnChange}
           />명이면..
           <br />
-          {JSON.stringify(karrotUser, null, 2)}
           {errMessage ? '🤔' : chicken}닭! <span onClick={toggleDebugger}>🐔</span>
           <span style={styles.arrow} onClick={increase}>&#9650;</span>
           <span style={styles.arrow} onClick={decrease}>&#9660;</span>
