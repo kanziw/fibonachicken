@@ -1,5 +1,6 @@
 import './styles/app.css'
 
+import { KarrotUser } from '@karrotmini/sdk'
 import { CSSProperties, useEffect, useState } from 'react'
 import { useDoubleTap } from 'use-double-tap'
 
@@ -49,6 +50,7 @@ const App = () => {
   const initialPeople = Number(queryParams.get('people')) || 1
   const { chicken, inputValue, errMessage, inputOnChange, increase, decrease, reset } = useFibonaChicken(initialPeople)
   const [isDebuggerOn, setIsDebuggerOn] = useState(false)
+  const [karrotUser, setKarrotUser] = useState<KarrotUser>(null)
 
   const { onClick: toggleDebugger } = useDoubleTap(() => {
     setIsDebuggerOn(!isDebuggerOn)
@@ -57,14 +59,27 @@ const App = () => {
   const onLoginButtonClick = () => {
     bridge.requestUserConsent({
       scopes: ['account/profile'],
-    }).then(({ karrotUser }) => window.alert(JSON.stringify(karrotUser, null, 2)))
+    }).then(({ karrotUser: k }) => {
+      setKarrotUser(k)
+      window.alert(JSON.stringify(k, null, 2))
+    })
+  }
+  const onAddFavoriteButtonClick = () => {
+    bridge.addToFavorites({
+      exampleContent: {
+        imageUrl: 'https://dnvefa72aowie.cloudfront.net/origin/article/202107/178fe27bdd1562126838a97919b26f831049bd6f43f97a8bfe8594ad6c86d892.png?q=95&s=1440x1440&t=inside',
+        title: '빵빵한 치킨',
+        typename: '치킨',
+      },
+    }).then(({ karrotUser: k }) => {
+      setKarrotUser(k)
+      window.alert(JSON.stringify(k, null, 2))
+    })
   }
 
   useEffect(() => {
-    bridge.getKarrotUser().then(karrotUser => {
-      console.log('', karrotUser)
-    })
-  })
+    bridge.getKarrotUser().then(setKarrotUser)
+  }, [])
 
   return (
     <>
@@ -73,6 +88,9 @@ const App = () => {
       <main style={styles.main}>
         <section style={styles.calculator}>
           <button onClick={onLoginButtonClick}>LOG IN</button>
+          {karrotUser?.hasAddedToFavorites
+            ? <span>즐겨찾기 되어있어요</span>
+            : <button onClick={onAddFavoriteButtonClick}>즐겨찾기!!</button>}
           <input
             style={styles.input}
             inputMode="numeric"
