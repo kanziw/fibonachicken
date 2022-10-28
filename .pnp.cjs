@@ -34,6 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@craco/craco", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:6.4.3"],\
+            ["@karrotmini/sdk", "npm:0.0.0"],\
             ["@types/jest", "npm:28.1.1"],\
             ["@types/node", "npm:16.11.39"],\
             ["@types/react", "npm:18.0.12"],\
@@ -3617,6 +3618,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@jridgewell/trace-mapping", "npm:0.3.9"],\
             ["@jridgewell/resolve-uri", "npm:3.0.7"],\
             ["@jridgewell/sourcemap-codec", "npm:1.4.13"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@karrotmini/sdk", [\
+        ["npm:0.0.0", {\
+          "packageLocation": "./.yarn/cache/@karrotmini-sdk-npm-0.0.0-f4d87e89a9-64b0e39988.zip/node_modules/@karrotmini/sdk/",\
+          "packageDependencies": [\
+            ["@karrotmini/sdk", "npm:0.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8844,6 +8854,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["fibonachicken", "workspace:."],\
             ["@craco/craco", "virtual:79bc6fae850aa7c1a6b31ad7676c79214a1130acf6e115652bc10672a8419a0ccc8f0353c1f078d51f9aca3ab9bf8fa6efcff7dd5c377f7943b77e7607a0e60f#npm:6.4.3"],\
+            ["@karrotmini/sdk", "npm:0.0.0"],\
             ["@types/jest", "npm:28.1.1"],\
             ["@types/node", "npm:16.11.39"],\
             ["@types/react", "npm:18.0.12"],\

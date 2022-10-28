@@ -1,11 +1,12 @@
 import './styles/app.css'
 
-import { CSSProperties, useState } from 'react'
+import { CSSProperties, useEffect, useState } from 'react'
 import { useDoubleTap } from 'use-double-tap'
 
 import { ReactComponent as Twitter } from './assets/twitter.svg'
 import { Debugger, Header, HorizontalDevider } from './components'
 import { useFibonaChicken } from './fibonaChicken'
+import { bridge } from './karrotmini'
 
 const styles: Record<string, CSSProperties> = {
   main: {
@@ -51,6 +52,16 @@ const App = () => {
 
   const { onClick: toggleDebugger } = useDoubleTap(() => {
     setIsDebuggerOn(!isDebuggerOn)
+  })
+
+  useEffect(() => {
+    bridge.getKarrotUser().then(karrotUser => {
+      console.log('', karrotUser)
+
+      bridge.requestUserConsent({
+        scopes: ['account/profile'],
+      }).then(console.log)
+    })
   })
 
   return (
