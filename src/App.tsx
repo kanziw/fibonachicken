@@ -50,7 +50,7 @@ const App = () => {
   const initialPeople = Number(queryParams.get('people')) || 1
   const { chicken, inputValue, errMessage, inputOnChange, increase, decrease, reset } = useFibonaChicken(initialPeople)
   const [isDebuggerOn, setIsDebuggerOn] = useState(false)
-  const [karrotUser, setKarrotUser] = useState<KarrotUser>(null)
+  const [karrotUser, setKarrotUser] = useState<KarrotUser | null>(null)
 
   const { onClick: toggleDebugger } = useDoubleTap(() => {
     setIsDebuggerOn(!isDebuggerOn)
