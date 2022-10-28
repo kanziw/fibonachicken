@@ -54,13 +54,15 @@ const App = () => {
     setIsDebuggerOn(!isDebuggerOn)
   })
 
+  const onLoginButtonClick = () => {
+    bridge.requestUserConsent({
+      scopes: ['account/profile'],
+    }).then(({ karrotUser }) => window.alert(JSON.stringify(karrotUser, null, 2)))
+  }
+
   useEffect(() => {
     bridge.getKarrotUser().then(karrotUser => {
       console.log('', karrotUser)
-
-      bridge.requestUserConsent({
-        scopes: ['account/profile'],
-      }).then(console.log)
     })
   })
 
@@ -70,6 +72,7 @@ const App = () => {
       <HorizontalDevider />
       <main style={styles.main}>
         <section style={styles.calculator}>
+          <button onClick={onLoginButtonClick}>LOG IN</button>
           <input
             style={styles.input}
             inputMode="numeric"
