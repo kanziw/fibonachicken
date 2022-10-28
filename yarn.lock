@@ -2069,6 +2069,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@karrotmini/sdk@npm:^0.0.0":
+  version: 0.0.0
+  resolution: "@karrotmini/sdk@npm:0.0.0"
+  checksum: 64b0e39988907ee7fd9513283190a4635c8de7be5b8a0b79f5c5aafd515b4ee3fde3a7a29d12509af48f61ac37b4cb6409de02a69c38f213a7b53b22d7b740c4
+  languageName: node
+  linkType: hard
+
 "@leichtgewicht/ip-codec@npm:^2.0.1":
   version: 2.0.4
   resolution: "@leichtgewicht/ip-codec@npm:2.0.4"
@@ -6074,6 +6081,7 @@ __metadata:
   resolution: "fibonachicken@workspace:."
   dependencies:
     "@craco/craco": ^6.4.3
+    "@karrotmini/sdk": ^0.0.0
     "@types/jest": ^28.1.1
     "@types/node": ^16.11.39
     "@types/react": ^18.0.12

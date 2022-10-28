@@ -1,11 +1,13 @@
 import './styles/app.css'
 
-import { CSSProperties, useState } from 'react'
+import { KarrotUser } from '@karrotmini/sdk'
+import { CSSProperties, useEffect, useState } from 'react'
 import { useDoubleTap } from 'use-double-tap'
 
 import { ReactComponent as Twitter } from './assets/twitter.svg'
 import { Debugger, Header, HorizontalDevider } from './components'
 import { useFibonaChicken } from './fibonaChicken'
+import { bridge } from './karrotmini'
 
 const styles: Record<string, CSSProperties> = {
   main: {
@@ -48,10 +50,16 @@ const App = () => {
   const initialPeople = Number(queryParams.get('people')) || 1
   const { chicken, inputValue, errMessage, inputOnChange, increase, decrease, reset } = useFibonaChicken(initialPeople)
   const [isDebuggerOn, setIsDebuggerOn] = useState(false)
+  const [karrotUser, setKarrotUser] = useState<KarrotUser | null>(null)
+  console.log(' ~ file: App.tsx ~ line 54 ~ App ~ karrotUser', karrotUser)
 
   const { onClick: toggleDebugger } = useDoubleTap(() => {
     setIsDebuggerOn(!isDebuggerOn)
   })
+
+  useEffect(() => {
+    bridge.getKarrotUser().then(setKarrotUser)
+  }, [])
 
   return (
     <>
