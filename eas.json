@@ -4,7 +4,13 @@
   },
   "build": {
     "production": {
-      "node": "20.12.1"
+      "node": "20.12.1",
+      "android": {
+        "image": "latest"
+      },
+      "ios": {
+        "image": "latest"
+      }
     },
     "preview": {
       "extends": "production",
