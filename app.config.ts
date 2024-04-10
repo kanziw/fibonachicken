@@ -5,6 +5,7 @@ dotenv.config();
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
+  owner: 'kanziw',
   name: 'fibonachicken',
   slug: 'fibonachicken',
   version: '0.9.0',
@@ -18,9 +19,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   assetBundlePatterns: ['**/*'],
   ios: {
+    bundleIdentifier: 'com.kanziw.fibonachicken',
     supportsTablet: true,
   },
   android: {
+    package: 'com.kanziw.fibonachicken',
     adaptiveIcon: {
       foregroundImage: './assets/logo512.png',
       backgroundColor: '#ffffff',
@@ -28,5 +31,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   web: {
     favicon: './assets/favicon-32x32.png',
+  },
+  extra: {
+    eas: {
+      projectId: 'ea0134ad-7387-4e00-8538-a3ad04e4d175',
+    },
   },
 });

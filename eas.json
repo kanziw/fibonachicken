@@ -1,0 +1,28 @@
+{
+  "cli": {
+    "version": ">= 7.8.0"
+  },
+  "build": {
+    "production": {
+      "node": "20.12.1",
+      "android": {
+        "image": "latest"
+      },
+      "ios": {
+        "image": "latest"
+      }
+    },
+    "preview": {
+      "extends": "production",
+      "distribution": "internal"
+    },
+    "development": {
+      "extends": "production",
+      "developmentClient": true,
+      "distribution": "internal"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
