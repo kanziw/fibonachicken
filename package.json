@@ -8,7 +8,8 @@
     "run:ios": "yarn start --ios",
     "run:web": "yarn start --web",
     "format": "biome check --apply .",
-    "build:web": "doppler run -- expo export -p web"
+    "build:web:ci": "expo export -p web",
+    "build:web": "doppler run -- yarn build:web:ci"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.1.3",
