@@ -1,12 +1,13 @@
 {
   "name": "fibonachicken",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "start": "doppler run -- expo start",
+    "android": "yarn start --android",
+    "ios": "yarn start --ios",
+    "web": "yarn start --web",
+    "format": "biome check --apply ."
   },
   "dependencies": {
     "expo": "~50.0.14",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@biomejs/biome": "^1.6.4",
     "@types/react": "~18.2.45",
     "typescript": "^5.1.3"
   },
