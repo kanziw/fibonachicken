@@ -18,10 +18,10 @@ export const useTheme = () => {
 
   const fontSize: Record<Size, number> = {
     xs: 4 * pixcelRatio,
-    s: 8 * pixcelRatio,
-    m: 12 * pixcelRatio,
-    l: 16 * pixcelRatio,
-    xl: 22 * pixcelRatio,
+    s: 6 * pixcelRatio,
+    m: 10 * pixcelRatio,
+    l: 14 * pixcelRatio,
+    xl: 20 * pixcelRatio,
   };
 
   return {
