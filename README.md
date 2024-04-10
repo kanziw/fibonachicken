@@ -20,6 +20,11 @@ doppler setup
 yarn start
 ```
 
+## Register Apple Devices for internal distribution
+```zsh
+yarn eas device:create
+```
+
 ## Create Project History
 ```zsh
 yarn create expo --template expo-template-blank-typescript
