@@ -1,12 +1,16 @@
 import { Text } from '@/components/Text';
 import { useTheme } from '@/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Header } from './Header';
+import { HorizontalDivider } from './HorizontalDivider';
 
 export const HomeScreen = () => {
-  const { center, fontSize } = useTheme();
+  const { deviceHeight, fontSize } = useTheme();
 
   return (
-    <SafeAreaView style={center}>
+    <SafeAreaView>
+      <Header title="피보나치킨 계산기" style={{ height: deviceHeight * 0.1 }} />
+      <HorizontalDivider />
       <Text style={{ fontSize: fontSize.xs }}>extra small</Text>
       <Text style={{ fontSize: fontSize.s }}>small</Text>
       <Text style={{ fontSize: fontSize.m }}>medium</Text>
