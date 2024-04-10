@@ -33,16 +33,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   web: {
     name: '남기지 않는다. 치킨. 피보나치킨!',
-    shortName: 'FibonaChicken',
-    favicon: './assets/favicon-32x32.png',
     output: 'single',
     bundler: 'metro',
-    display: 'fullscreen',
+    display: 'standalone',
     preferRelatedApplications: true,
-    splash: {
-      backgroundColor: '#ffffff',
-      image: './assets/logo512.png',
-    },
   },
   extra: {
     eas: {
