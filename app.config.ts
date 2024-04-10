@@ -9,7 +9,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: 'fibonachicken',
   version: '0.9.0',
   orientation: 'portrait',
-  icon: './assets/icon.png',
+  icon: './assets/logo512.png',
   userInterfaceStyle: 'light',
   splash: {
     image: './assets/splash.png',
@@ -22,11 +22,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: './assets/adaptive-icon.png',
+      foregroundImage: './assets/logo512.png',
       backgroundColor: '#ffffff',
     },
   },
   web: {
-    favicon: './assets/favicon.png',
+    favicon: './assets/favicon-32x32.png',
   },
 });
