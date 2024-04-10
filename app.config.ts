@@ -9,6 +9,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: 'fibonachicken',
   slug: 'fibonachicken',
   version: '0.9.0',
+  scheme: 'fibonachicken',
   orientation: 'portrait',
   icon: './assets/logo512.png',
   userInterfaceStyle: 'automatic',
@@ -36,5 +37,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     eas: {
       projectId: 'ea0134ad-7387-4e00-8538-a3ad04e4d175',
     },
+  },
+  updates: {
+    url: 'https://u.expo.dev/ea0134ad-7387-4e00-8538-a3ad04e4d175',
+  },
+  runtimeVersion: {
+    policy: 'appVersion',
   },
 });
