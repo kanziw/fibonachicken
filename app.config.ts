@@ -19,6 +19,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     backgroundColor: '#ffffff',
   },
   assetBundlePatterns: ['**/*'],
+  platforms: ['ios', 'android', 'web'],
   ios: {
     bundleIdentifier: 'com.kanziw.fibonachicken',
     supportsTablet: true,
@@ -31,7 +32,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
   },
   web: {
+    name: '남기지 않는다. 치킨. 피보나치킨!',
+    shortName: 'FibonaChicken',
     favicon: './assets/favicon-32x32.png',
+    output: 'single',
+    bundler: 'metro',
+    display: 'fullscreen',
+    preferRelatedApplications: true,
+    splash: {
+      backgroundColor: '#ffffff',
+      image: './assets/logo512.png',
+    },
   },
   extra: {
     eas: {
