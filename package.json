@@ -8,7 +8,8 @@
     "run:ios": "yarn start --ios",
     "run:web": "yarn start --web",
     "format": "biome check --apply .",
-    "build:web:ci": "expo export -p web",
+    "insert-manifest": "awk 'NR==5 {print \"    <link rel=\\\"manifest\\\" href=\\\"/manifest.json\\\">\"} 1' dist/index.html > temp && mv temp dist/index.html",
+    "build:web:ci": "expo export -p web && yarn insert-manifest",
     "build:web": "doppler run -- yarn build:web:ci"
   },
   "dependencies": {
