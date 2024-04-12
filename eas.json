@@ -4,7 +4,7 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "production": {
+    "base": {
       "node": "20.12.1",
       "autoIncrement": true,
       "android": {
@@ -14,13 +14,17 @@
         "image": "latest"
       }
     },
+    "production": {
+      "extends": "base",
+      "channel": "main"
+    },
     "preview": {
-      "extends": "production",
+      "extends": "base",
       "channel": "main",
       "distribution": "internal"
     },
     "development": {
-      "extends": "production",
+      "extends": "base",
       "developmentClient": true,
       "distribution": "internal"
     }
