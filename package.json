@@ -17,6 +17,7 @@
     "expo": "~50.0.14",
     "expo-application": "~5.8.3",
     "expo-status-bar": "~1.11.1",
+    "expo-updates": "~0.24.12",
     "expo-web-browser": "~12.8.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
