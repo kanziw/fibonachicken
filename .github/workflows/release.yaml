@@ -1,10 +1,12 @@
-name: preview
+name: update
 
 on:
-  - pull_request
+  push:
+    branches:
+      - main
 
 jobs:
-  preview:
+  update:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Setup repo
@@ -25,11 +27,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile --immutable
 
-      - name: 🚀 Create preview
-        uses: expo/expo-github-action/preview@v8
-        with:
-          # `github.event.pull_request.head.ref` is only available on `pull_request` triggers.
-          # Use your own, or keep the automatically infered branch name from `--auto`, when using different triggers.
-          command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
+      - name: 🚀 Create update
+        run: eas update --auto --non-interactive
