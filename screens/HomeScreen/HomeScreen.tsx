@@ -1,6 +1,7 @@
 import { RootView } from '@/components/RootView';
 import { Text } from '@/components/Text';
 import { useTheme } from '@/theme';
+import * as Application from 'expo-application';
 import * as WebBrowser from 'expo-web-browser';
 import { Alert, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { ExpandableSection } from './ExpandableSection';
@@ -68,7 +69,7 @@ export const HomeScreen = () => {
             <Text style={[expandableSectionFontSize, { fontWeight: 'bold' }]} onPress={onFibonaChickenPressed}>
               피보나치킨
             </Text>{' '}
-            계산기라고 부르도록 하겠다.
+            계산기라고 부르도록 하겠다. <Text style={{ fontSize: fontSize.xs }}>v{Application.nativeBuildVersion}</Text>
           </Text>
           <Text style={[originalAuthorFontSize, styles.originalAuthor]}>
             원작자:{' '}
