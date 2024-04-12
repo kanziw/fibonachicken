@@ -2,10 +2,11 @@ import { RootView } from '@/components/RootView';
 import { Text } from '@/components/Text';
 import { useTheme } from '@/theme';
 import * as WebBrowser from 'expo-web-browser';
-import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { ExpandableSection } from './ExpandableSection';
 import { Header } from './Header';
 import { HorizontalDivider } from './HorizontalDivider';
+import { useDebugInfo } from './useDebugInfo';
 import { useFibonaChickenCalculator } from './useFibonaChickenCalculator';
 
 const chickenEmoji = String.fromCodePoint(0x1f414); // 🐔
@@ -17,9 +18,19 @@ export const HomeScreen = () => {
   const { peopleCount, setPeopleCount, chickenCount, increase, decrease } = useFibonaChickenCalculator();
 
   const expandableSectionFontSize = { fontSize: fontSize.s };
+  const originalAuthorFontSize = { fontSize: fontSize.xs };
+  const { debugInfo } = useDebugInfo();
 
   const onChangeNumber = (text: string) => {
     setPeopleCount(Math.max(Number(text.substring(0, 8)) || 0, 0));
+  };
+  const onFibonaChickenPressed = () => {
+    Alert.alert(
+      'Debug',
+      Object.entries(debugInfo)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join('\n'),
+    );
   };
 
   return (
@@ -53,11 +64,15 @@ export const HomeScreen = () => {
           <Text style={expandableSectionFontSize}>모든 것의 균형은 황금 비율에서 그 해답을 찾을 수 있고, 이를 수학적으로 풀어낸것이 바로 피보나치 수열이니라.</Text>
           <Text style={expandableSectionFontSize}>
             일찍이 선지자가 있어, 치킨과 피보나치 수열의 관계를 밝힌 자들이 있으니 그들의 끝을 모르는 탐구 정신과 널리 인간과 치킨을 이롭게 하려는 마음을 높이 사, 내 잠시 짬을 내어
-            허접한 코드질을 하였으니 이를 <Text style={[expandableSectionFontSize, { fontWeight: 'bold' }]}>피보나치킨</Text> 계산기라고 부르도록 하겠다.
+            허접한 코드질을 하였으니 이를{' '}
+            <Text style={[expandableSectionFontSize, { fontWeight: 'bold' }]} onPress={onFibonaChickenPressed}>
+              피보나치킨
+            </Text>{' '}
+            계산기라고 부르도록 하겠다.
           </Text>
-          <Text style={[expandableSectionFontSize, styles.originalAuthor]}>
+          <Text style={[originalAuthorFontSize, styles.originalAuthor]}>
             원작자:{' '}
-            <Text style={expandableSectionFontSize} onPress={() => WebBrowser.openBrowserAsync('https://twitter.com/scari_net')}>
+            <Text style={[originalAuthorFontSize, styles.textUnderline]} onPress={() => WebBrowser.openBrowserAsync('https://twitter.com/scari_net')}>
               @scari_net
             </Text>
           </Text>
@@ -107,5 +122,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginRight: 20,
     textAlign: 'right',
+  },
+  textUnderline: {
+    textDecorationLine: 'underline',
   },
 });
