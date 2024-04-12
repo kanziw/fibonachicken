@@ -20,7 +20,6 @@
     },
     "preview": {
       "extends": "base",
-      "channel": "main",
       "distribution": "internal"
     },
     "development": {
