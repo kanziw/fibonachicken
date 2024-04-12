@@ -2,7 +2,12 @@ import * as Application from 'expo-application';
 import { useEffect, useState } from 'react';
 
 export const useDebugInfo = () => {
-  const [debugInfo, setDebugInfo] = useState<Record<string, string | null>>({});
+  const [debugInfo, setDebugInfo] = useState<Record<string, string | null>>({
+    applicationId: Application.applicationId,
+    applicationName: Application.applicationName,
+    nativeApplicationVersion: Application.nativeApplicationVersion,
+    nativeBuildVersion: Application.nativeBuildVersion,
+  });
 
   useEffect(() => {
     let androidId: string | null = null;
