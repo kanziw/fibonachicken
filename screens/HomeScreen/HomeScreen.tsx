@@ -69,7 +69,7 @@ export const HomeScreen = () => {
             <Text style={[expandableSectionFontSize, { fontWeight: 'bold' }]} onPress={onFibonaChickenPressed}>
               피보나치킨
             </Text>{' '}
-            계산기라고 부르도록 하겠다. <Text style={{ fontSize: fontSize.xs }}>v{Application.nativeBuildVersion}</Text>
+            계산기라고 부르도록 하겠다.
           </Text>
           <Text style={[originalAuthorFontSize, styles.originalAuthor]}>
             원작자:{' '}
