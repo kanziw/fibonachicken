@@ -1,0 +1,22 @@
+appInformation:
+  surrpotUrl: https://github.com/kanziw/fibonachicken/issues
+  copyright: 2024 kanziw.
+  kr:
+    appName: 피보나치킨
+    promotionText: 남기지 않는다. 치킨. 피보나치킨!
+    description: |
+      치킨 몇 마리 시켜야 할지? 가 궁금할 때!
+      수학적으로 완벽하게 계산해보세요 ;)
+    keywords: 치킨, 피보나치, 피보나치킨, chicken, fibonachi, fibonachicken
+  en:
+    appName: 피보나치킨
+    promotionText: Leave no chicken behind. Fibonacci + chicken!
+    description: |
+      Curious about how many chickens to order?
+      Calculate it mathematically perfectly ;)
+    keywords: fibonachi, chicken, fibonachicken
+appPrivacy:
+  kr:
+    privacyPolicyUrl: https://slashpage.com/fibonachicken/kr/terms-of-service
+  en:
+    privacyPolicyUrl: https://slashpage.com/fibonachicken/en/terms-of-service
