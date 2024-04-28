@@ -8,7 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   owner: 'kanziw',
   name: 'fibonachicken',
   slug: 'fibonachicken',
-  version: '0.9.0',
+  version: '0.9.1',
   scheme: 'fibonachicken',
   orientation: 'portrait',
   icon: './assets/logo512.png',
@@ -22,7 +22,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   platforms: ['ios', 'android', 'web'],
   ios: {
     bundleIdentifier: 'com.kanziw.fibonachicken',
-    supportsTablet: true,
+    supportsTablet: false,
   },
   android: {
     package: 'com.kanziw.fibonachicken',
