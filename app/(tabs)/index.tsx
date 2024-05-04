@@ -1,20 +1,17 @@
 import { RootView } from '@/components/RootView';
 import { Text } from '@/components/Text';
+import { ExpandableSection } from '@/screens/HomeScreen/ExpandableSection';
+import { useDebugInfo } from '@/screens/HomeScreen/useDebugInfo';
+import { useFibonaChickenCalculator } from '@/screens/HomeScreen/useFibonaChickenCalculator';
 import { useTheme } from '@/theme';
-import * as Application from 'expo-application';
 import * as WebBrowser from 'expo-web-browser';
 import { Alert, ScrollView, StyleSheet, TextInput, View } from 'react-native';
-import { ExpandableSection } from './ExpandableSection';
-import { Header } from './Header';
-import { HorizontalDivider } from './HorizontalDivider';
-import { useDebugInfo } from './useDebugInfo';
-import { useFibonaChickenCalculator } from './useFibonaChickenCalculator';
 
 const chickenEmoji = String.fromCodePoint(0x1f414); // 🐔
 const babyChickEmoji = String.fromCodePoint(0x1f425); // 🐥
 const thinkingFaceEmoji = String.fromCodePoint(0x1f914); // 🤔
 
-export const HomeScreen = () => {
+export default function Tab() {
   const { deviceWidth, deviceHeight, fontSize } = useTheme();
   const { peopleCount, setPeopleCount, chickenCount, increase, decrease } = useFibonaChickenCalculator();
 
@@ -36,8 +33,6 @@ export const HomeScreen = () => {
 
   return (
     <RootView>
-      <Header title="피보나치킨 계산기" style={{ height: deviceHeight * 0.1 }} />
-      <HorizontalDivider />
       <ScrollView scrollEnabled={true} style={styles.scrollView}>
         <View style={styles.inputContainer}>
           <TextInput
@@ -81,7 +76,7 @@ export const HomeScreen = () => {
       </ScrollView>
     </RootView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   scrollView: {

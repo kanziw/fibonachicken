@@ -1,15 +1,16 @@
 import type { ConfigContext, ExpoConfig } from '@expo/config';
 import * as dotenv from 'dotenv';
+import pkg from './package.json';
 
 dotenv.config();
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   owner: 'kanziw',
-  name: 'fibonachicken',
+  name: '피보나치킨',
   slug: 'fibonachicken',
-  version: '0.9.1',
-  scheme: 'fibonachicken',
+  version: pkg.version,
+  scheme: ['fibonachicken', 'fc'],
   orientation: 'portrait',
   icon: './assets/logo512.png',
   userInterfaceStyle: 'automatic',
@@ -49,4 +50,5 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   runtimeVersion: {
     policy: 'appVersion',
   },
+  plugins: ['expo-router'],
 });
