@@ -31,7 +31,9 @@ export default function FavoritesTab() {
 const FavoriteChicken: FC<{ chicken: Chicken }> = ({ chicken }) => {
   return (
     <View>
-      <Text>{chicken.name}</Text>
+      <Text>
+        {chicken.brand.name} - {chicken.name}
+      </Text>
     </View>
   );
 };

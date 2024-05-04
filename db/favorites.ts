@@ -1,58 +1,56 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { allChickens } from './chickens';
-import type { Chicken } from './core';
+import type { Chicken, ChickenID } from './core';
 
 const KEY = 'FAVORITES_CHICKEN_IDS_V1';
 type FavoriteChicken = {
-  versoin: 'v1';
-  chickenId: Chicken['id'];
+  version: 'v1';
+  chickenId: ChickenID;
   createdAtMs: number;
 };
 
-export const useFavorites = () => {
-  const [favoriteChickens, setFavoriteChickens] = useState<FavoriteChicken[]>([]);
-  const [isInitialized, setIsInitialized] = useState(true);
-
-  useEffect(() => {
-    (async () => {
+const favoriteChickensAtom = atomWithStorage<FavoriteChicken[]>(
+  KEY,
+  [],
+  {
+    async getItem(key, initialValue) {
       try {
-        const value = await AsyncStorage.getItem(KEY);
-        if (value === null) {
-          return;
-        }
-        const parsedFavoriteChickens = JSON.parse(value) as FavoriteChicken[];
-        parsedFavoriteChickens.sort((a, b) => b.createdAtMs - a.createdAtMs);
-        setFavoriteChickens(parsedFavoriteChickens);
-      } catch (err) {
-        console.error(`initialize favorites error: ${err}`);
-      } finally {
-        setIsInitialized(false);
+        const value = await AsyncStorage.getItem(key);
+        return JSON.parse(value ?? '[]') as FavoriteChicken[];
+      } catch {
+        return initialValue;
       }
-    })();
-  }, []);
+    },
+    async setItem(key, newValue) {
+      await AsyncStorage.setItem(key, JSON.stringify(newValue));
+    },
+    async removeItem(key) {
+      await AsyncStorage.removeItem(key);
+    },
+  },
+  { getOnInit: true },
+);
 
-  const favoriteChickenIds = favoriteChickens.map((favorite) => favorite.chickenId);
+export const useFavorites = () => {
+  const [favoriteChickens, setFavoriteChickens] = useAtom(favoriteChickensAtom);
+  const favoriteChickenIds = favoriteChickens.map((favoriteChicken) => favoriteChicken.chickenId);
 
   const addChickenFavorite = async (chicken: Chicken) => {
     if (favoriteChickenIds.includes(chicken.id)) {
       return;
     }
 
-    try {
-      const newFavoriteChickens: FavoriteChicken[] = [
-        {
-          versoin: 'v1',
-          chickenId: chicken.id,
-          createdAtMs: Date.now(),
-        },
-        ...favoriteChickens,
-      ];
-      await AsyncStorage.setItem(KEY, JSON.stringify(newFavoriteChickens));
-      setFavoriteChickens(newFavoriteChickens);
-    } catch (err) {
-      console.error(`add favorite error: ${err}`);
-    }
+    const newFavoriteChickens: FavoriteChicken[] = [
+      {
+        version: 'v1',
+        chickenId: chicken.id,
+        createdAtMs: Date.now(),
+      },
+      ...favoriteChickens,
+    ];
+    setFavoriteChickens(newFavoriteChickens);
   };
 
   const removeChickenFavorite = async (chicken: Chicken) => {
@@ -60,17 +58,10 @@ export const useFavorites = () => {
       return;
     }
 
-    try {
-      const newFavoriteChickens = favoriteChickens.filter((favorite) => favorite.chickenId !== chicken.id);
-      await AsyncStorage.setItem(KEY, JSON.stringify(newFavoriteChickens));
-      setFavoriteChickens(newFavoriteChickens);
-    } catch (err) {
-      console.error(`remove favorite error: ${err}`);
-    }
+    setFavoriteChickens(favoriteChickens.filter((favorite) => favorite.chickenId !== chicken.id));
   };
 
   return {
-    isInitialized,
     chickens: favoriteChickenIds.map((id) => allChickens.find((chicken) => chicken.id === id)).filter((chicken): chicken is Chicken => chicken !== undefined),
 
     addChickenFavorite,

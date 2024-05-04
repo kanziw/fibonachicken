@@ -3,7 +3,7 @@ import { useTheme } from '@/theme';
 import { FontAwesome } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
 import type { FC } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { Text } from './Text';
 
 type Props = {
