@@ -27,8 +27,9 @@ export type BrandID = (typeof allBrands)[number]['id'];
 type Bone = 'Bone' | 'Boneless';
 type Seasoned = 'Seasoned' | 'Unseasoned';
 
+export type ChickenID = `${BrandID}-${string}-${Category}-${Bone}-${Seasoned}`;
 export type Chicken = {
-  id: `${BrandID}-${string}-${Category}-${Bone}-${Seasoned}`;
+  id: ChickenID;
   name: string;
 
   brand: Brand;

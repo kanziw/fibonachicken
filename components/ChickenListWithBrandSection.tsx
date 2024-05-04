@@ -1,8 +1,9 @@
-import type { Chicken } from '@/db';
+import { type Chicken, useFavorites } from '@/db';
 import { useTheme } from '@/theme';
+import { FontAwesome } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
 import type { FC } from 'react';
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { Text } from './Text';
 
 type Props = {
@@ -10,7 +11,8 @@ type Props = {
 };
 
 export const ChickenListWithBrandSection: FC<Props> = ({ chickens }) => {
-  const { backgroundColor } = useTheme();
+  const { backgroundColor, foregroundColor } = useTheme();
+  const { chickens: favoriteChickens, addChickenFavorite, removeChickenFavorite } = useFavorites();
 
   const brandChickenMap: Record<string, Chicken[]> = {};
   for (const chicken of chickens) {
@@ -34,11 +36,16 @@ export const ChickenListWithBrandSection: FC<Props> = ({ chickens }) => {
           // Rendering header
           return <Text style={[{ backgroundColor }, styles.header]}>{item}</Text>;
         }
+
         // Render item
+        const favorited = favoriteChickens.some((favorite) => favorite.id === item.id);
         return (
-          <Text size="l" style={styles.item}>
-            {item.name}
-          </Text>
+          <Pressable onPress={() => (favorited ? removeChickenFavorite(item) : addChickenFavorite(item))} style={styles.itemContainer}>
+            <Text size="l">{item.name}</Text>
+            <Text>
+              <FontAwesome name={favorited ? 'heart' : 'heart-o'} size={24} color={foregroundColor} />
+            </Text>
+          </Pressable>
         );
       }}
       stickyHeaderIndices={stickyHeaderIndices}
@@ -53,8 +60,12 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 6,
   },
-  item: {
-    paddingHorizontal: 6,
+  itemContainer: {
+    paddingHorizontal: 16,
     paddingVertical: 12,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });

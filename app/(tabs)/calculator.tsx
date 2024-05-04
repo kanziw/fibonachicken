@@ -9,7 +9,7 @@ import { Alert, Platform, ScrollView, StyleSheet, TextInput, View } from 'react-
 
 const chickenEmoji = '🐔';
 
-export default function Tab() {
+export default function CalculatorTab() {
   const { deviceWidth, fontSize } = useTheme();
   const { peopleCount, setPeopleCount, chickenCount, increase, decrease } = useFibonaChickenCalculator();
 
