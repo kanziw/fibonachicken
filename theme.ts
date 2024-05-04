@@ -1,6 +1,6 @@
 import { PixelRatio, StyleSheet, useColorScheme, useWindowDimensions } from 'react-native';
 
-type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
+export type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
 type Theme = 'light' | 'dark';
 
 const decideByTheme = <T>(theme: Theme, lightValue: T, darkValue: T) => (theme === 'light' ? lightValue : darkValue);
@@ -19,9 +19,9 @@ export const useTheme = () => {
   const fontSize: Record<Size, number> = {
     xs: 4 * pixcelRatio,
     s: 6 * pixcelRatio,
-    m: 10 * pixcelRatio,
-    l: 14 * pixcelRatio,
-    xl: 20 * pixcelRatio,
+    m: 8 * pixcelRatio,
+    l: 10 * pixcelRatio,
+    xl: 12 * pixcelRatio,
   };
 
   return {
@@ -34,6 +34,16 @@ export const useTheme = () => {
     foregroundColor,
 
     fontSize,
+
+    navigationHeaderStyle: {
+      headerStyle: { backgroundColor },
+      headerTitleStyle: { color: foregroundColor },
+      headerTintColor: foregroundColor,
+    },
+    navigationTabBarStyle: {
+      tabBarStyle: { backgroundColor },
+      tabBarActiveTintColor: foregroundColor,
+    },
 
     ...StyleSheet.create({
       center: {

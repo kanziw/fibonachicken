@@ -1,12 +1,16 @@
-import { useTheme } from '@/theme';
+import { type Size, useTheme } from '@/theme';
 import type { FC } from 'react';
 import { Text as RNText, type TextProps } from 'react-native';
 
-export const Text: FC<TextProps> = ({ style, children, ...props }) => {
-  const { foregroundColor, fontSize } = useTheme();
+type Props = TextProps & {
+  size?: Size;
+};
+
+export const Text: FC<Props> = ({ size, style, children, ...props }) => {
+  const { foregroundColor, fontSize: fontSizeMap } = useTheme();
 
   return (
-    <RNText style={[{ color: foregroundColor, fontSize: fontSize.m }, style]} {...props}>
+    <RNText style={[{ color: foregroundColor, fontSize: fontSizeMap[size ?? 'm'] }, style]} {...props}>
       {children}
     </RNText>
   );
