@@ -20,6 +20,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="map-signs" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          title: '즐겨찾기',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="heartbeat" color={color} />,
+        }}
+      />
     </Tabs>
   );
 }
