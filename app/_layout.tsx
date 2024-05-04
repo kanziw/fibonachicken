@@ -3,17 +3,20 @@ import { useTheme } from '@/theme';
 import { ThemeProvider, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import type { Route } from '@react-navigation/routers';
 import { Stack } from 'expo-router/stack';
+import { Provider } from 'jotai';
 
 export default function AppLayout() {
   const { navigationTheme } = useTheme();
   return (
-    <ThemeProvider value={navigationTheme}>
-      <Stack screenOptions={({ route }) => ({ headerTitle: routeToTabHeader(route) })}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="tags" />
-        <Stack.Screen name="contacts" options={{ presentation: 'modal', headerTitle: '🙋' }} />
-      </Stack>
-    </ThemeProvider>
+    <Provider>
+      <ThemeProvider value={navigationTheme}>
+        <Stack screenOptions={({ route }) => ({ headerTitle: routeToTabHeader(route) })}>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="tags" />
+          <Stack.Screen name="contacts" options={{ presentation: 'modal', headerTitle: '🙋' }} />
+        </Stack>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

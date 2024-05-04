@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAtom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
-import { allChickens } from './chickens';
+import { atomWithStorage, createJSONStorage } from 'jotai/utils';
+import { chickenMap } from './chickens';
 import type { Chicken, ChickenID } from './core';
 
 const KEY = 'FAVORITES_CHICKEN_IDS_V1';
@@ -11,58 +11,39 @@ type FavoriteChicken = {
   createdAtMs: number;
 };
 
-const favoriteChickensAtom = atomWithStorage<FavoriteChicken[]>(
-  KEY,
-  [],
-  {
-    async getItem(key, initialValue) {
-      try {
-        const value = await AsyncStorage.getItem(key);
-        return JSON.parse(value ?? '[]') as FavoriteChicken[];
-      } catch {
-        return initialValue;
-      }
-    },
-    async setItem(key, newValue) {
-      await AsyncStorage.setItem(key, JSON.stringify(newValue));
-    },
-    async removeItem(key) {
-      await AsyncStorage.removeItem(key);
-    },
-  },
-  { getOnInit: true },
-);
+const storage = createJSONStorage<FavoriteChicken[]>(() => AsyncStorage);
+export const favoriteChickensAtom = atomWithStorage<FavoriteChicken[]>(KEY, [], storage, { getOnInit: true });
 
 export const useFavorites = () => {
   const [favoriteChickens, setFavoriteChickens] = useAtom(favoriteChickensAtom);
-  const favoriteChickenIds = favoriteChickens.map((favoriteChicken) => favoriteChicken.chickenId);
 
   const addChickenFavorite = async (chicken: Chicken) => {
-    if (favoriteChickenIds.includes(chicken.id)) {
-      return;
-    }
+    setFavoriteChickens(async (prev) => {
+      const prevFavoriteChickens = await prev;
+      if (prevFavoriteChickens.some((favorite) => favorite.chickenId === chicken.id)) {
+        return prevFavoriteChickens;
+      }
 
-    const newFavoriteChickens: FavoriteChicken[] = [
-      {
-        version: 'v1',
-        chickenId: chicken.id,
-        createdAtMs: Date.now(),
-      },
-      ...favoriteChickens,
-    ];
-    setFavoriteChickens(newFavoriteChickens);
+      return [
+        {
+          version: 'v1',
+          chickenId: chicken.id,
+          createdAtMs: Date.now(),
+        },
+        ...prevFavoriteChickens,
+      ];
+    });
   };
 
   const removeChickenFavorite = async (chicken: Chicken) => {
-    if (!favoriteChickenIds.includes(chicken.id)) {
-      return;
-    }
-
-    setFavoriteChickens(favoriteChickens.filter((favorite) => favorite.chickenId !== chicken.id));
+    setFavoriteChickens(async (prev) => {
+      const prevFavoriteChickens = await prev;
+      return prevFavoriteChickens.filter((favorite) => favorite.chickenId !== chicken.id);
+    });
   };
 
   return {
-    chickens: favoriteChickenIds.map((id) => allChickens.find((chicken) => chicken.id === id)).filter((chicken): chicken is Chicken => chicken !== undefined),
+    chickens: favoriteChickens.map((favorite) => chickenMap.get(favorite.chickenId)).filter((chicken): chicken is Chicken => chicken !== undefined),
 
     addChickenFavorite,
     removeChickenFavorite,
