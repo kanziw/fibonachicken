@@ -1,10 +1,11 @@
+import { FavoriteChickenItem } from '@/components/FavoriteChickenItem';
 import { RootView } from '@/components/RootView';
 import { Text } from '@/components/Text';
-import { type Chicken, useFavorites } from '@/db';
+import { useFavorites } from '@/db';
 import { useTheme } from '@/theme';
 import { useRouter } from 'expo-router';
 import type { FC } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 export default function FavoritesTab() {
   const { center } = useTheme();
@@ -21,21 +22,46 @@ export default function FavoritesTab() {
   }
   return (
     <RootView>
-      {chickens.map((chicken) => (
-        <FavoriteChicken key={chicken.id} chicken={chicken} />
-      ))}
+      <ScrollView>
+        {chickens.map((chicken) => (
+          <View key={chicken.id}>
+            <FavoriteChickenItem chicken={chicken} favorited={true} />
+            <View style={styles.tagContainer}>
+              <Tag name={chicken.brand.name} />
+              {!chicken.hasBone && Tag({ name: '순살' })}
+              {chicken.seasoned && Tag({ name: '양념' })}
+            </View>
+          </View>
+        ))}
+      </ScrollView>
     </RootView>
   );
 }
 
-const FavoriteChicken: FC<{ chicken: Chicken }> = ({ chicken }) => {
-  return (
-    <View>
-      <Text>
-        {chicken.brand.name} - {chicken.name}
-      </Text>
-    </View>
-  );
-};
+const Tag: FC<{ name: string }> = ({ name }) => (
+  <View style={styles.tagItem}>
+    <Text size="s">{name}</Text>
+  </View>
+);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  header: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 16,
+  },
+  tagContainer: {
+    flexDirection: 'row',
+    alignContent: 'space-around',
+    paddingLeft: 20,
+    columnGap: 6,
+  },
+  tagItem: {
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'lightgray',
+    borderRadius: 4,
+    paddingHorizontal: 8,
+    height: 30,
+    justifyContent: 'center',
+  },
+});
