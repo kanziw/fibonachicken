@@ -1,12 +1,13 @@
+import { ChickenListWithBrandSection } from '@/components/ChickenListWithBrandSection';
 import { RootView } from '@/components/RootView';
-import { Text } from '@/components/Text';
-import { useTheme } from '@/theme';
+import { allChickens } from '@/db';
 
-export default function SeasonsedScreen() {
-  const { center } = useTheme();
+const seasonedChickens = allChickens.filter((chicken) => chicken.category === 'Fried' && chicken.hasBone && chicken.seasoned);
+
+export default function SeasonedScreen() {
   return (
-    <RootView style={center}>
-      <Text>양념</Text>
+    <RootView>
+      <ChickenListWithBrandSection chickens={seasonedChickens} />
     </RootView>
   );
 }

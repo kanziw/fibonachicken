@@ -25,6 +25,8 @@ export const useTheme = () => {
     xl: 12 * pixcelRatio,
   };
 
+  const borderColor = 'lightgray'
+
   // https://reactnavigation.org/docs/themes/
   const navigationTheme: NavigationTheme = {
     dark: theme === 'dark',
@@ -33,7 +35,7 @@ export const useTheme = () => {
       background: backgroundColor,
       card: backgroundColor,
       text: foregroundColor,
-      border: 'lightgray',
+      border: borderColor,
       notification: 'rgb(255, 69, 58)',
     },
   };
@@ -46,6 +48,7 @@ export const useTheme = () => {
 
     backgroundColor,
     foregroundColor,
+    dividerColor: borderColor,
 
     fontSize,
 
