@@ -1,9 +1,8 @@
 import { type Chicken, useFavorites } from '@/db';
 import { useTheme } from '@/theme';
-import { FontAwesome } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
 import type { FC } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { FavoriteChickenItem } from './FavoriteChickenItem';
 import { Text } from './Text';
 
@@ -12,7 +11,7 @@ type Props = {
 };
 
 export const ChickenListWithBrandSection: FC<Props> = ({ chickens }) => {
-  const { backgroundColor, foregroundColor } = useTheme();
+  const { backgroundColor } = useTheme();
   const { chickens: favoriteChickens, addChickenFavorite, removeChickenFavorite } = useFavorites();
 
   const brandChickenMap: Record<string, Chicken[]> = {};
@@ -40,7 +39,7 @@ export const ChickenListWithBrandSection: FC<Props> = ({ chickens }) => {
 
         // Render item
         const favorited = favoriteChickens.some((favorite) => favorite.id === item.id);
-        return <FavoriteChickenItem key={item.id} chicken={item} favorited={favorited} />;
+        return <FavoriteChickenItem key={item.id} chicken={item} favorited={favorited} addChickenFavorite={addChickenFavorite} removeChickenFavorite={removeChickenFavorite} />;
       }}
       stickyHeaderIndices={stickyHeaderIndices}
       getItemType={(item) => (typeof item === 'string' ? 'sectionHeader' : 'row')}

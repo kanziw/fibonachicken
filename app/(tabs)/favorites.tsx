@@ -1,15 +1,14 @@
 import { FavoriteChickenItem } from '@/components/FavoriteChickenItem';
 import { RootView } from '@/components/RootView';
 import { Text } from '@/components/Text';
-import { type Brand, useFavorites } from '@/db';
+import { useFavorites } from '@/db';
 import { useTheme } from '@/theme';
 import { useRouter } from 'expo-router';
-import type { FC } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 export default function FavoritesTab() {
   const { center } = useTheme();
-  const { chickens } = useFavorites();
+  const { chickens, addChickenFavorite, removeChickenFavorite } = useFavorites();
   const router = useRouter();
 
   if (!chickens.length) {
@@ -20,16 +19,27 @@ export default function FavoritesTab() {
       </Pressable>
     );
   }
+
   return (
     <RootView>
       <ScrollView>
         {chickens.map((chicken) => (
           <View key={chicken.id}>
-            <FavoriteChickenItem chicken={chicken} favorited={true} />
+            <FavoriteChickenItem chicken={chicken} favorited={true} addChickenFavorite={addChickenFavorite} removeChickenFavorite={removeChickenFavorite} />
             <View style={styles.tagContainer}>
-              <Tag value={chicken.brand} />
-              {!chicken.hasBone && Tag({ value: '순살' })}
-              {chicken.seasoned && Tag({ value: '양념' })}
+              <Pressable style={styles.tagItem} onPress={() => router.push(`/tags/${chicken.brand.id}`)}>
+                <Text size="s">{chicken.brand.name}</Text>
+              </Pressable>
+              {!chicken.hasBone && (
+                <Pressable style={styles.tagItem} onPress={() => router.push('/tags/boneless')}>
+                  <Text size="s">순살</Text>
+                </Pressable>
+              )}
+              {chicken.seasoned && (
+                <Pressable style={styles.tagItem} onPress={() => router.push('/tags/seasoned')}>
+                  <Text size="s">양념</Text>
+                </Pressable>
+              )}
             </View>
           </View>
         ))}
@@ -37,29 +47,6 @@ export default function FavoritesTab() {
     </RootView>
   );
 }
-
-const Tag: FC<{ value: '순살' | '양념' | Brand }> = ({ value }) => {
-  const router = useRouter();
-  const name = value === '순살' ? '순살' : value === '양념' ? '양념' : value.name;
-
-  return (
-    <Pressable
-      onPress={() => {
-        switch (value) {
-          case '순살':
-            return router.push('/tags/boneless');
-          case '양념':
-            return router.push('/tags/seasoned');
-          default:
-            return router.push(`/tags/${value.id}`);
-        }
-      }}
-      style={styles.tagItem}
-    >
-      <Text size="s">{name}</Text>
-    </Pressable>
-  );
-};
 
 const styles = StyleSheet.create({
   header: {
