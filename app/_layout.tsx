@@ -1,17 +1,14 @@
 import { useTheme } from '@/theme';
+import { ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router/stack';
 
 export default function AppLayout() {
-  const { navigationHeaderStyle } = useTheme();
+  const { navigationTheme } = useTheme();
   return (
-    <Stack>
-      <Stack.Screen
-        name="(tabs)"
-        options={{
-          headerShown: false,
-          ...navigationHeaderStyle,
-        }}
-      />
-    </Stack>
+    <ThemeProvider value={navigationTheme}>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </ThemeProvider>
   );
 }

@@ -1,3 +1,4 @@
+import type { Theme as NavigationTheme } from '@react-navigation/native';
 import { PixelRatio, StyleSheet, useColorScheme, useWindowDimensions } from 'react-native';
 
 export type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
@@ -24,6 +25,19 @@ export const useTheme = () => {
     xl: 12 * pixcelRatio,
   };
 
+  // https://reactnavigation.org/docs/themes/
+  const navigationTheme: NavigationTheme = {
+    dark: theme === 'dark',
+    colors: {
+      primary: foregroundColor,
+      background: backgroundColor,
+      card: backgroundColor,
+      text: foregroundColor,
+      border: 'lightgray',
+      notification: 'rgb(255, 69, 58)',
+    },
+  };
+
   return {
     theme,
 
@@ -35,15 +49,7 @@ export const useTheme = () => {
 
     fontSize,
 
-    navigationHeaderStyle: {
-      headerStyle: { backgroundColor },
-      headerTitleStyle: { color: foregroundColor },
-      headerTintColor: foregroundColor,
-    },
-    navigationTabBarStyle: {
-      tabBarStyle: { backgroundColor },
-      tabBarActiveTintColor: foregroundColor,
-    },
+    navigationTheme,
 
     ...StyleSheet.create({
       center: {
