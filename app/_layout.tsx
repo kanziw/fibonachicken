@@ -11,6 +11,7 @@ export default function AppLayout() {
       <Stack screenOptions={({ route }) => ({ headerTitle: routeToTabHeader(route) })}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="tags" />
+        <Stack.Screen name="contacts" options={{ presentation: 'modal', headerTitle: '🙋' }} />
       </Stack>
     </ThemeProvider>
   );
