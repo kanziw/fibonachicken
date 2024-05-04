@@ -8,19 +8,14 @@ import { Text } from './Text';
 type Props = {
   chicken: Chicken;
   favorited: boolean;
-  withBrandPrefix?: boolean;
 };
 
-export const FavoriteChickenItem: FC<Props> = ({ chicken, favorited, withBrandPrefix = false }) => {
+export const FavoriteChickenItem: FC<Props> = ({ chicken, favorited }) => {
   const { favoritesColor } = useTheme();
   const { addChickenFavorite, removeChickenFavorite } = useFavorites();
-  console.log('???', withBrandPrefix);
   return (
     <Pressable onPress={() => (favorited ? removeChickenFavorite(chicken) : addChickenFavorite(chicken))} style={styles.container}>
-      <Text size="l">
-        {withBrandPrefix ? `${chicken.brand.name} - ` : ''}
-        {chicken.name}
-      </Text>
+      <Text size="l">{chicken.name}</Text>
       <Text>
         <FontAwesome name={favorited ? 'heart' : 'heart-o'} size={24} color={favoritesColor} />
       </Text>
