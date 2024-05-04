@@ -4,7 +4,7 @@ import { allChickens } from '@/db';
 
 const bonelessChickens = allChickens.filter((chicken) => chicken.category === 'Fried' && !chicken.hasBone);
 
-export default function BonelessScreen() {
+export default function FindingsBonelessScreen() {
   return (
     <RootView>
       <ChickenListWithBrandSection chickens={bonelessChickens} />

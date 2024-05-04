@@ -14,6 +14,7 @@ export const useTheme = () => {
   // ref by https://github.com/kevinvn1709/vscode-dracula-color-theme/blob/a50f875631175ff53edea1b342fb1dcbb82f928c/themes/dracula-color-theme.json
   const backgroundColor = decideByTheme(theme, 'white', '#2B2B2B');
   const foregroundColor = decideByTheme(theme, 'black', '#D4D4D4');
+  const primaryColor = '#FF7F7F';
 
   const pixcelRatio = PixelRatio.get();
 
@@ -31,7 +32,7 @@ export const useTheme = () => {
   const navigationTheme: NavigationTheme = {
     dark: theme === 'dark',
     colors: {
-      primary: foregroundColor,
+      primary: primaryColor,
       background: backgroundColor,
       card: backgroundColor,
       text: foregroundColor,
@@ -46,9 +47,11 @@ export const useTheme = () => {
     deviceWidth,
     deviceHeight,
 
+    primaryColor,
     backgroundColor,
     foregroundColor,
     dividerColor: borderColor,
+    favoritesColor: primaryColor,
 
     fontSize,
 

@@ -4,6 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
 import type { FC } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
+import { FavoriteChickenItem } from './FavoriteChickenItem';
 import { Text } from './Text';
 
 type Props = {
@@ -39,14 +40,7 @@ export const ChickenListWithBrandSection: FC<Props> = ({ chickens }) => {
 
         // Render item
         const favorited = favoriteChickens.some((favorite) => favorite.id === item.id);
-        return (
-          <Pressable onPress={() => (favorited ? removeChickenFavorite(item) : addChickenFavorite(item))} style={styles.itemContainer}>
-            <Text size="l">{item.name}</Text>
-            <Text>
-              <FontAwesome name={favorited ? 'heart' : 'heart-o'} size={24} color={foregroundColor} />
-            </Text>
-          </Pressable>
-        );
+        return <FavoriteChickenItem key={item.id} chicken={item} favorited={favorited} />;
       }}
       stickyHeaderIndices={stickyHeaderIndices}
       getItemType={(item) => (typeof item === 'string' ? 'sectionHeader' : 'row')}
@@ -59,13 +53,5 @@ export const ChickenListWithBrandSection: FC<Props> = ({ chickens }) => {
 const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 6,
-  },
-  itemContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
 });

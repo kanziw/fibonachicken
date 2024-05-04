@@ -4,7 +4,7 @@ import { allChickens } from '@/db';
 
 const seasonedChickens = allChickens.filter((chicken) => chicken.category === 'Fried' && chicken.hasBone && chicken.seasoned);
 
-export default function SeasonedScreen() {
+export default function FindingsSeasonedScreen() {
   return (
     <RootView>
       <ChickenListWithBrandSection chickens={seasonedChickens} />

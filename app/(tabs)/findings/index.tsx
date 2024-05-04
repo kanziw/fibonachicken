@@ -1,6 +1,6 @@
 import { RootView } from '@/components/RootView';
 import { Text } from '@/components/Text';
-import { type AllRoutes, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import type { FC, PropsWithChildren } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
@@ -28,7 +28,7 @@ export default function Tab() {
 }
 
 type Props = {
-  href: AllRoutes;
+  href: '/findings/fride' | '/findings/seasoned' | '/findings/boneless' | '/findings/grilled';
 };
 
 const Card: FC<PropsWithChildren<Props>> = ({ href, children }) => {
