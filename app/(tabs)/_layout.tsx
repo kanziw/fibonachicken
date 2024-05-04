@@ -5,8 +5,9 @@ import React from 'react';
 export default function TabLayout() {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
+      <Tabs.Screen name="index" options={{ href: null }} />
       <Tabs.Screen
-        name="index"
+        name="calculator"
         options={{
           title: '계산기',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="calculator" color={color} />,
