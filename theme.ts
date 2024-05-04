@@ -25,7 +25,7 @@ export const useTheme = () => {
     xl: 12 * pixcelRatio,
   };
 
-  const borderColor = 'lightgray'
+  const borderColor = 'lightgray';
 
   // https://reactnavigation.org/docs/themes/
   const navigationTheme: NavigationTheme = {

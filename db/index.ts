@@ -1,2 +1,2 @@
-export type * from './types';
+export * from './core';
 export * from './chickens';

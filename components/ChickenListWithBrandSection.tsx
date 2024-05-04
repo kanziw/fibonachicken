@@ -2,6 +2,7 @@ import type { Chicken } from '@/db';
 import { useTheme } from '@/theme';
 import { FlashList } from '@shopify/flash-list';
 import type { FC } from 'react';
+import { StyleSheet } from 'react-native';
 import { Text } from './Text';
 
 type Props = {
@@ -13,8 +14,9 @@ export const ChickenListWithBrandSection: FC<Props> = ({ chickens }) => {
 
   const brandChickenMap: Record<string, Chicken[]> = {};
   for (const chicken of chickens) {
-    brandChickenMap[chicken.brand] ??= [];
-    brandChickenMap[chicken.brand].push(chicken);
+    const header = `• ${chicken.brand.name}`;
+    brandChickenMap[header] ??= [];
+    brandChickenMap[header].push(chicken);
   }
   const DATA: (string | Chicken)[] = [];
   for (const [brand, chickens] of Object.entries(brandChickenMap)) {
@@ -30,14 +32,14 @@ export const ChickenListWithBrandSection: FC<Props> = ({ chickens }) => {
       renderItem={({ item }) => {
         if (typeof item === 'string') {
           // Rendering header
-          return (
-            <Text size="s" style={{ backgroundColor }}>
-              {item}
-            </Text>
-          );
+          return <Text style={[{ backgroundColor }, styles.header]}>{item}</Text>;
         }
         // Render item
-        return <Text>{item.name}</Text>;
+        return (
+          <Text size="l" style={styles.item}>
+            {item.name}
+          </Text>
+        );
       }}
       stickyHeaderIndices={stickyHeaderIndices}
       getItemType={(item) => (typeof item === 'string' ? 'sectionHeader' : 'row')}
@@ -46,3 +48,13 @@ export const ChickenListWithBrandSection: FC<Props> = ({ chickens }) => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    paddingHorizontal: 6,
+  },
+  item: {
+    paddingHorizontal: 6,
+    paddingVertical: 12,
+  },
+});
