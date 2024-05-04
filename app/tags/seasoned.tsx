@@ -2,12 +2,12 @@ import { ChickenListWithBrandSection } from '@/components/ChickenListWithBrandSe
 import { RootView } from '@/components/RootView';
 import { allChickens } from '@/db';
 
-const grilledChickens = allChickens.filter((chicken) => chicken.category === 'Grilled');
+const seasonedChickens = allChickens.filter((chicken) => chicken.seasoned);
 
-export default function FindingsGrilledScreen() {
+export default function TagsSeasonedScreen() {
   return (
     <RootView>
-      <ChickenListWithBrandSection chickens={grilledChickens} />
+      <ChickenListWithBrandSection chickens={seasonedChickens} />
     </RootView>
   );
 }

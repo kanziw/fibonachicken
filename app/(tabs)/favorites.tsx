@@ -1,7 +1,7 @@
 import { FavoriteChickenItem } from '@/components/FavoriteChickenItem';
 import { RootView } from '@/components/RootView';
 import { Text } from '@/components/Text';
-import { useFavorites } from '@/db';
+import { type Brand, useFavorites } from '@/db';
 import { useTheme } from '@/theme';
 import { useRouter } from 'expo-router';
 import type { FC } from 'react';
@@ -27,9 +27,9 @@ export default function FavoritesTab() {
           <View key={chicken.id}>
             <FavoriteChickenItem chicken={chicken} favorited={true} />
             <View style={styles.tagContainer}>
-              <Tag name={chicken.brand.name} />
-              {!chicken.hasBone && Tag({ name: '순살' })}
-              {chicken.seasoned && Tag({ name: '양념' })}
+              <Tag value={chicken.brand} />
+              {!chicken.hasBone && Tag({ value: '순살' })}
+              {chicken.seasoned && Tag({ value: '양념' })}
             </View>
           </View>
         ))}
@@ -38,11 +38,28 @@ export default function FavoritesTab() {
   );
 }
 
-const Tag: FC<{ name: string }> = ({ name }) => (
-  <View style={styles.tagItem}>
-    <Text size="s">{name}</Text>
-  </View>
-);
+const Tag: FC<{ value: '순살' | '양념' | Brand }> = ({ value }) => {
+  const router = useRouter();
+  const name = value === '순살' ? '순살' : value === '양념' ? '양념' : value.name;
+
+  return (
+    <Pressable
+      onPress={() => {
+        switch (value) {
+          case '순살':
+            return router.push('/tags/boneless');
+          case '양념':
+            return router.push('/tags/seasoned');
+          default:
+            return router.push(`/tags/${value.id}`);
+        }
+      }}
+      style={styles.tagItem}
+    >
+      <Text size="s">{name}</Text>
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   header: {
