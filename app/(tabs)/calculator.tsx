@@ -7,9 +7,7 @@ import { useTheme } from '@/theme';
 import * as WebBrowser from 'expo-web-browser';
 import { Alert, Platform, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
-const chickenEmoji = String.fromCodePoint(0x1f414); // 🐔
-const babyChickEmoji = String.fromCodePoint(0x1f425); // 🐥
-const thinkingFaceEmoji = String.fromCodePoint(0x1f914); // 🤔
+const chickenEmoji = '🐔';
 
 export default function Tab() {
   const { deviceWidth, fontSize } = useTheme();
@@ -50,12 +48,12 @@ export default function Tab() {
         </View>
 
         <View style={styles.result}>
-          <Text>{chickenCount > 0 ? `${chickenCount}닭! ${chickenEmoji}` : thinkingFaceEmoji.repeat(3)}</Text>
+          <Text>{chickenCount > 0 ? `${chickenCount}닭! ${chickenEmoji}` : '🤔🤔🤔'}</Text>
           <Text onPress={increase}>&#9650;</Text>
           <Text onPress={decrease}>&#9660;</Text>
         </View>
 
-        <Text style={styles.chickens}>{chickenCount > renderAvailableMaxChickneCount ? `${babyChickEmoji}: 엄마..? 어디야...` : chickenEmoji.repeat(chickenCount)}</Text>
+        <Text style={styles.chickens}>{chickenCount > renderAvailableMaxChickneCount ? '🐥: 엄마..? 어디야...' : chickenEmoji.repeat(chickenCount)}</Text>
 
         <ExpandableSection title="세상 만사.." style={styles.expandableSection} titleStyle={expandableSectionFontSize} containerStyle={styles.expandableSectionContainer}>
           <Text style={expandableSectionFontSize}>모든 것의 균형은 황금 비율에서 그 해답을 찾을 수 있고, 이를 수학적으로 풀어낸것이 바로 피보나치 수열이니라.</Text>
