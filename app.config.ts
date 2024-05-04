@@ -55,4 +55,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     policy: 'appVersion',
   },
   plugins: ['expo-router'],
+  experiments: {
+    typedRoutes: true,
+  },
 });
