@@ -1,18 +1,10 @@
-import { useTheme } from '@/theme';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
 import React from 'react';
 
 export default function TabLayout() {
-  const { navigationHeaderStyle, navigationTabBarStyle } = useTheme();
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-        ...navigationHeaderStyle,
-        ...navigationTabBarStyle,
-      }}
-    >
+    <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
         name="index"
         options={{
@@ -21,10 +13,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="findings"
         options={{
-          title: 'Settings',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+          title: '찾기',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="map-signs" color={color} />,
         }}
       />
     </Tabs>
