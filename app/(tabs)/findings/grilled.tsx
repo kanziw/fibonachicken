@@ -1,12 +1,13 @@
+import { ChickenListWithBrandSection } from '@/components/ChickenListWithBrandSection';
 import { RootView } from '@/components/RootView';
-import { Text } from '@/components/Text';
-import { useTheme } from '@/theme';
+import { allChickens } from '@/db';
+
+const grilledChickens = allChickens.filter((chicken) => chicken.category === 'Grilled');
 
 export default function GrilledScreen() {
-  const { center } = useTheme();
   return (
-    <RootView style={center}>
-      <Text>구운치킨</Text>
+    <RootView>
+      <ChickenListWithBrandSection chickens={grilledChickens} />
     </RootView>
   );
 }

@@ -1,12 +1,13 @@
+import { ChickenListWithBrandSection } from '@/components/ChickenListWithBrandSection';
 import { RootView } from '@/components/RootView';
-import { Text } from '@/components/Text';
-import { useTheme } from '@/theme';
+import { allChickens } from '@/db';
+
+const friedChickens = allChickens.filter((chicken) => chicken.category === 'Fried' && chicken.hasBone && !chicken.seasoned);
 
 export default function FrideScreen() {
-  const { center } = useTheme();
   return (
-    <RootView style={center}>
-      <Text>후라이드</Text>
+    <RootView>
+      <ChickenListWithBrandSection chickens={friedChickens} />
     </RootView>
   );
 }

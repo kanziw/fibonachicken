@@ -1,12 +1,13 @@
+import { ChickenListWithBrandSection } from '@/components/ChickenListWithBrandSection';
 import { RootView } from '@/components/RootView';
-import { Text } from '@/components/Text';
-import { useTheme } from '@/theme';
+import { allChickens } from '@/db';
+
+const bonelessChickens = allChickens.filter((chicken) => chicken.category === 'Fried' && !chicken.hasBone);
 
 export default function BonelessScreen() {
-  const { center } = useTheme();
   return (
-    <RootView style={center}>
-      <Text>순살</Text>
+    <RootView>
+      <ChickenListWithBrandSection chickens={bonelessChickens} />
     </RootView>
   );
 }
