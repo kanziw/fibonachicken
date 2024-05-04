@@ -12,7 +12,7 @@ type FavoriteChicken = {
 
 export const useFavorites = () => {
   const [favoriteChickens, setFavoriteChickens] = useState<FavoriteChicken[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isInitialized, setIsInitialized] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -25,17 +25,55 @@ export const useFavorites = () => {
         parsedFavoriteChickens.sort((a, b) => b.createdAtMs - a.createdAtMs);
         setFavoriteChickens(parsedFavoriteChickens);
       } catch (err) {
-        console.error(`load favorites error: ${err}`);
+        console.error(`initialize favorites error: ${err}`);
       } finally {
-        setIsLoading(false);
+        setIsInitialized(false);
       }
     })();
   }, []);
 
   const favoriteChickenIds = favoriteChickens.map((favorite) => favorite.chickenId);
 
+  const addChickenFavorite = async (chicken: Chicken) => {
+    if (favoriteChickenIds.includes(chicken.id)) {
+      return;
+    }
+
+    try {
+      const newFavoriteChickens: FavoriteChicken[] = [
+        {
+          versoin: 'v1',
+          chickenId: chicken.id,
+          createdAtMs: Date.now(),
+        },
+        ...favoriteChickens,
+      ];
+      await AsyncStorage.setItem(KEY, JSON.stringify(newFavoriteChickens));
+      setFavoriteChickens(newFavoriteChickens);
+    } catch (err) {
+      console.error(`add favorite error: ${err}`);
+    }
+  };
+
+  const removeChickenFavorite = async (chicken: Chicken) => {
+    if (!favoriteChickenIds.includes(chicken.id)) {
+      return;
+    }
+
+    try {
+      const newFavoriteChickens = favoriteChickens.filter((favorite) => favorite.chickenId !== chicken.id);
+      await AsyncStorage.setItem(KEY, JSON.stringify(newFavoriteChickens));
+      setFavoriteChickens(newFavoriteChickens);
+    } catch (err) {
+      console.error(`remove favorite error: ${err}`);
+    }
+  };
+
   return {
-    isLoading,
+    isInitialized,
     chickens: favoriteChickenIds.map((id) => allChickens.find((chicken) => chicken.id === id)).filter((chicken): chicken is Chicken => chicken !== undefined),
+
+    addChickenFavorite,
+    removeChickenFavorite,
   };
 };
