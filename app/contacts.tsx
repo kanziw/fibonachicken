@@ -20,8 +20,8 @@ export default function ContactsModal() {
           추가하고 싶은 메뉴가 있다면 <Text onPress={() => Linking.openURL('mailto: kanziwoong+fibonachicken@gmail.com')}>kanziwoong@gmail.com</Text>으로 메일 주세요 :)
         </Text>
         <Text>
-          혹시 엔지니어시라면 <FontAwesome name="github" size={24} color={foregroundColor} onPress={() => Linking.openURL('https://github.com/kanziw/fibonachicken')} />
-          을 통해 직접 기여해주셔도 좋습니다!
+          혹시 엔지니어시라면 <FontAwesome name="github" size={24} color={foregroundColor} onPress={() => Linking.openURL('https://github.com/kanziw/fibonachicken')} />을 통해 직접
+          기여해주셔도 좋습니다!
         </Text>
       </View>
     </RootView>
