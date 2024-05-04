@@ -5,16 +5,17 @@ import { useDebugInfo } from '@/screens/HomeScreen/useDebugInfo';
 import { useFibonaChickenCalculator } from '@/screens/HomeScreen/useFibonaChickenCalculator';
 import { useTheme } from '@/theme';
 import * as WebBrowser from 'expo-web-browser';
-import { Alert, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Alert, Platform, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 const chickenEmoji = String.fromCodePoint(0x1f414); // 🐔
 const babyChickEmoji = String.fromCodePoint(0x1f425); // 🐥
 const thinkingFaceEmoji = String.fromCodePoint(0x1f914); // 🤔
 
 export default function Tab() {
-  const { deviceWidth, deviceHeight, fontSize } = useTheme();
+  const { deviceWidth, fontSize } = useTheme();
   const { peopleCount, setPeopleCount, chickenCount, increase, decrease } = useFibonaChickenCalculator();
 
+  const renderAvailableMaxChickneCount = Platform.OS === 'web' ? 500 : 1000;
   const expandableSectionFontSize = { fontSize: fontSize.s };
   const originalAuthorFontSize = { fontSize: fontSize.xs };
   const { debugInfo } = useDebugInfo();
@@ -54,7 +55,7 @@ export default function Tab() {
           <Text onPress={decrease}>&#9660;</Text>
         </View>
 
-        <Text style={styles.chickens}>{chickenCount > 500 ? `${babyChickEmoji}: 엄마..? 어디야...` : chickenEmoji.repeat(chickenCount)}</Text>
+        <Text style={styles.chickens}>{chickenCount > renderAvailableMaxChickneCount ? `${babyChickEmoji}: 엄마..? 어디야...` : chickenEmoji.repeat(chickenCount)}</Text>
 
         <ExpandableSection title="세상 만사.." style={styles.expandableSection} titleStyle={expandableSectionFontSize} containerStyle={styles.expandableSectionContainer}>
           <Text style={expandableSectionFontSize}>모든 것의 균형은 황금 비율에서 그 해답을 찾을 수 있고, 이를 수학적으로 풀어낸것이 바로 피보나치 수열이니라.</Text>

@@ -1,9 +1,12 @@
-import { Text, View } from 'react-native';
+import { RootView } from '@/components/RootView';
+import { Text } from '@/components/Text';
+import { useTheme } from '@/theme';
 
 export default function Tab() {
+  const { center } = useTheme();
   return (
-    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+    <RootView style={center}>
       <Text>Tab Settings</Text>
-    </View>
+    </RootView>
   );
 }

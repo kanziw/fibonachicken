@@ -4,19 +4,20 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 
 export default function TabLayout() {
-  const { foregroundColor } = useTheme();
+  const { navigationHeaderStyle, navigationTabBarStyle } = useTheme();
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: foregroundColor,
         headerShown: false,
+        ...navigationHeaderStyle,
+        ...navigationTabBarStyle,
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          title: '계산기',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="calculator" color={color} />,
         }}
       />
       <Tabs.Screen
