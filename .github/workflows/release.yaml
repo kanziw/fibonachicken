@@ -27,7 +27,17 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
-        run: yarn install --frozen-lockfile --immutable
+        run: |
+          yarn install --frozen-lockfile --immutable
+
+      - name: Extract Git Short Commit SHA
+        id: vars
+        run: |
+          echo "GIT_SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "GIT_COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
 
       - name: 🚀 Create update
         run: eas update --auto --non-interactive
+        env:
+          GIT_SHORT_SHA: ${{ steps.vars.outputs.GIT_SHORT_SHA }}
+          GIT_COMMIT_MSG: ${{ steps.vars.outputs.GIT_COMMIT_MSG }}

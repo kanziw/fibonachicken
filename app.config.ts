@@ -43,6 +43,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     eas: {
       projectId: 'ea0134ad-7387-4e00-8538-a3ad04e4d175',
     },
+    git: {
+      shortSha: process.env.GIT_SHORT_SHA || 'unknown',
+      commitMsg: process.env.GIT_COMMIT_MSG || 'unknown',
+    },
   },
   updates: {
     url: 'https://u.expo.dev/ea0134ad-7387-4e00-8538-a3ad04e4d175',
