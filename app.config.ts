@@ -23,7 +23,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   platforms: ['ios', 'android', 'web'],
   ios: {
     bundleIdentifier: 'com.kanziw.fibonachicken',
-    supportsTablet: false,
+    supportsTablet: true,
   },
   android: {
     package: 'com.kanziw.fibonachicken',
