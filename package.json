@@ -37,7 +37,7 @@
     "@babel/core": "^7.20.0",
     "@biomejs/biome": "^1.6.4",
     "@types/react": "~18.2.45",
-    "eas-cli": "^7.8.0",
+    "eas-cli": "^15.0.12",
     "typescript": "^5.4.5"
   },
   "private": true
