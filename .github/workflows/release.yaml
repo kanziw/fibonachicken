@@ -1,0 +1,43 @@
+name: update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 5
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".tool-versions"
+          cache: "yarn"
+
+      - name: 🏗 Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: |
+          yarn install --frozen-lockfile --immutable
+
+      - name: Extract Git Short Commit SHA
+        id: vars
+        run: |
+          echo "GIT_SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "GIT_COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
+
+      - name: 🚀 Create update
+        run: eas update --auto --non-interactive
+        env:
+          GIT_SHORT_SHA: ${{ steps.vars.outputs.GIT_SHORT_SHA }}
+          GIT_COMMIT_MSG: ${{ steps.vars.outputs.GIT_COMMIT_MSG }}

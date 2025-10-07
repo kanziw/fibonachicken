@@ -1,0 +1,45 @@
+name: preview
+
+on:
+  - pull_request
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 5
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: ".tool-versions"
+          cache: "npm"
+
+      - name: 🏗 Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: |
+          npm ci --legacy-peer-deps
+
+      - name: Extract Git Short Commit SHA
+        id: vars
+        run: |
+          echo "GIT_SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "GIT_COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
+
+      - name: 🚀 Create preview
+        uses: expo/expo-github-action/preview@v8
+        with:
+          # `github.event.pull_request.head.ref` is only available on `pull_request` triggers.
+          # Use your own, or keep the automatically infered branch name from `--auto`, when using different triggers.
+          command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
+        env:
+          GIT_SHORT_SHA: ${{ steps.vars.outputs.GIT_SHORT_SHA }}
+          GIT_COMMIT_MSG: ${{ steps.vars.outputs.GIT_COMMIT_MSG }}
