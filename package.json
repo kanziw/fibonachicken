@@ -7,7 +7,10 @@
     "start": "doppler run -- expo start",
     "android": "doppler run -- expo start --android",
     "ios": "doppler run -- expo start --ios",
-    "web": "doppler run -- expo start --web"
+    "web": "doppler run -- expo start --web",
+    "insert-manifest": "awk 'NR==5 {print \"    <link rel=\\\"manifest\\\" href=\\\"/manifest.json\\\">\"} 1' dist/index.html > temp && mv temp dist/index.html",
+    "build:web:ci": "expo export -p web && npm run insert-manifest",
+    "build:web": "doppler run -- npm run build:web:ci"
   },
   "dependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -25,6 +28,7 @@
     "expo-updates": "~29.0.12",
     "jotai": "^2.15.0",
     "react": "19.1.0",
+    "react-dom": "19.1.0",
     "react-native": "0.81.4",
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
