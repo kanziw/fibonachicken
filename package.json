@@ -1,21 +1,32 @@
 {
   "name": "fibonachicken",
-  "version": "1.0.0",
-  "main": "index.ts",
+  "version": "0.9.2",
+  "main": "expo-router/entry",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "format": "biome check --write .",
+    "start": "doppler run -- expo start",
+    "android": "doppler run -- expo start --android",
+    "ios": "doppler run -- expo start --ios",
+    "web": "doppler run -- expo start --web"
   },
   "dependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "@shopify/flash-list": "2.0.2",
+    "@types/react": "~19.1.10",
     "expo": "~54.0.12",
+    "expo-application": "~7.0.7",
+    "expo-constants": "~18.0.9",
+    "expo-device": "~8.0.9",
+    "expo-linking": "~8.0.8",
+    "expo-router": "~6.0.10",
     "expo-status-bar": "~3.0.8",
+    "expo-updates": "~29.0.12",
+    "jotai": "^2.15.0",
     "react": "19.1.0",
-    "react-native": "0.81.4"
-  },
-  "devDependencies": {
-    "@types/react": "~19.1.0",
+    "react-native": "0.81.4",
+    "react-native-safe-area-context": "~5.6.0",
     "typescript": "~5.9.2"
   },
   "private": true

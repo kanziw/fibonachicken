@@ -1,0 +1,40 @@
+{
+  "cli": {
+    "version": ">= 15.0.12",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "base": {
+      "node": "20.12.1",
+      "autoIncrement": true,
+      "android": {
+        "image": "latest"
+      },
+      "ios": {
+        "image": "latest"
+      }
+    },
+    "production": {
+      "extends": "base",
+      "channel": "main"
+    },
+    "preview": {
+      "extends": "base",
+      "distribution": "internal"
+    },
+    "development": {
+      "extends": "base",
+      "developmentClient": true,
+      "distribution": "internal"
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "jjw8888@hanmail.net",
+        "ascAppId": "6484272063",
+        "appleTeamId": "ZQC3XYUF8Z"
+      }
+    }
+  }
+}
